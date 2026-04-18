@@ -1,0 +1,1 @@
+(Public Xbox Terminlogy Reference)[https://learn.microsoft.com/en-us/gaming/gdk/docs/store/policies/console/console-certification-terminology?view=gdk-2510&utm_source=copilot.com#xbox-console-required-terminology]
