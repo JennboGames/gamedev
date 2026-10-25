@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "jennbo-games-ai-loc-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["build/index.js"]
+    }
+  }
+}
