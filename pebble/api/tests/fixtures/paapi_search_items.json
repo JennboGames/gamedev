@@ -1,0 +1,26 @@
+{
+  "SearchResult": {
+    "TotalResultCount": 2,
+    "Items": [
+      {
+        "ASIN": "B0GQVP8RLD",
+        "ParentASIN": "B0GQVP8RLD",
+        "DetailPageURL": "https://www.amazon.com/dp/B0GQVP8RLD",
+        "Images": {"Primary": {"Large": {"URL": "https://m.media-amazon.com/images/I/double-wear.jpg"}}},
+        "ItemInfo": {
+          "Title": {"DisplayValue": "Double Wear Stay-in-Place Foundation"},
+          "ByLineInfo": {"Brand": {"DisplayValue": "Estée Lauder"}}
+        }
+      },
+      {
+        "ASIN": "B0MOCKFM02",
+        "DetailPageURL": "https://www.amazon.com/dp/B0MOCKFM02",
+        "Images": {"Primary": {"Large": {"URL": "https://m.media-amazon.com/images/I/fit-me.jpg"}}},
+        "ItemInfo": {
+          "Title": {"DisplayValue": "Fit Me Matte + Poreless Foundation"},
+          "ByLineInfo": {"Brand": {"DisplayValue": "Maybelline"}}
+        }
+      }
+    ]
+  }
+}

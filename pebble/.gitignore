@@ -1,0 +1,28 @@
+# Environment and secrets
+.env
+local.settings.json
+
+# Data volumes
+data/
+
+# Build output
+dist/
+bin/
+obj/
+.vite/
+*.tsbuildinfo
+
+# Runtime
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Azurite
+__azurite_db_*.json
+__blobstorage__/
+__queuestorage__/

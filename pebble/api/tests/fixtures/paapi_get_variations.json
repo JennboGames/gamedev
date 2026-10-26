@@ -1,0 +1,19 @@
+{
+  "VariationsResult": {
+    "VariationSummary": {"PageCount": 1},
+    "Items": [
+      {
+        "ASIN": "B0GQVP8RLD-1N1",
+        "ItemInfo": {"Title": {"DisplayValue": "Double Wear 1N1 Ivory Nude"}},
+        "Images": {"Primary": {"Large": {"URL": "https://m.media-amazon.com/images/I/swatch-1n1.jpg"}}},
+        "VariationAttributes": [{"Name": "color_name", "Value": "1N1 Ivory Nude"}]
+      },
+      {
+        "ASIN": "B0GQVP8RLD-2W1",
+        "ItemInfo": {"Title": {"DisplayValue": "Double Wear 2W1 Dawn"}},
+        "Images": {"Primary": {"Large": {"URL": "https://m.media-amazon.com/images/I/swatch-2w1.jpg"}}},
+        "VariationAttributes": [{"Name": "size_name", "Value": "1 fl oz"}]
+      }
+    ]
+  }
+}
