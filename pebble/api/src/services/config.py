@@ -2,10 +2,12 @@
 
 import os
 from dataclasses import dataclass
+from pathlib import Path
 
 from src.errors.error_types import ConfigurationError
 
 DEVELOPMENT = "Development"
+DEFAULT_CATALOG_PATH = Path(__file__).resolve().parents[3] / "catalog" / "products.json"
 # Estée Lauder Double Wear, Armani Luminous Silk, Westmore Beauty, L'Oréal True Match,
 # tarte BB blur (fair), Lancôme Teint Idole, NARS Natural Radiant Longwear
 DEFAULT_PINNED_ASINS = (
@@ -43,6 +45,7 @@ class AppConfig:
     extraction_workers: int
     # ASINs always included in a search, ahead of the keyword results
     pinned_asins: tuple[str, ...] = ()
+    catalog_path: Path = DEFAULT_CATALOG_PATH
 
     @property
     def is_development(self) -> bool:
@@ -92,4 +95,5 @@ def load_config() -> AppConfig:
         max_shades_per_product=_positive_int("MAX_SHADES_PER_PRODUCT", 60),
         extraction_workers=_positive_int("EXTRACTION_WORKERS", 8),
         pinned_asins=_asin_list("PINNED_ASINS", DEFAULT_PINNED_ASINS),
+        catalog_path=Path(os.environ.get("CATALOG_PATH") or DEFAULT_CATALOG_PATH),
     )

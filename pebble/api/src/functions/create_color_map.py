@@ -12,4 +12,4 @@ bp = func.Blueprint()
 def create_color_map(req: func.HttpRequest) -> func.HttpResponse:
     body = parse_body(req, ColorMapRequest, optional=True)
     product_ids = [str(pid) for pid in body.product_ids] if body.product_ids else None
-    return json_response(get_services().color_maps().generate(product_ids), 201)
+    return json_response(get_services().color_maps().generate(product_ids, body.shape), 201)

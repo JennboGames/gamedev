@@ -102,3 +102,32 @@ def test_latest_color_map_returns_generated_map(services):
 def test_latest_color_map_missing_is_not_found(services):
     with pytest.raises(NotFoundError):
         services.color_maps().latest()
+
+
+def test_color_wheel_is_generated_and_fetched_separately_from_the_rectangle_map(services):
+    services.collector().collect("skin foundation", 20)
+
+    wheel = services.color_maps().generate(None, "wheel")
+
+    assert wheel.shape == "wheel"
+    assert wheel.width == wheel.height
+    assert services.color_maps().latest("wheel").image_url == wheel.image_url
+    with pytest.raises(NotFoundError):
+        services.color_maps().latest()  # no rectangle map was generated
+
+    rectangle = services.color_maps().generate(None)
+    assert rectangle.shape == "rectangle"
+    assert services.color_maps().latest("wheel").image_url == wheel.image_url
+
+
+def test_generate_stores_a_plain_background_and_a_full_download_image(services):
+    services.collector().collect("skin foundation", 20)
+
+    color_map = services.color_maps().generate(None)
+
+    assert color_map.download_url != color_map.image_url
+    assert color_map.download_url.endswith("-full.png")
+    colormaps = [
+        name for (container, name) in services.blob_store.objects if container == "colormaps"
+    ]
+    assert len(colormaps) == 2

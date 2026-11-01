@@ -1,5 +1,6 @@
 {
     "chat.editor.preferCopilotHarness": false,
     "chat.defaultToCopilotHarness": false,
-    "chat.agent.maxRequests": 9999
+    "chat.agent.maxRequests": 9999,
+    "python.terminal.useEnvFile": true
 }

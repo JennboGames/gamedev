@@ -10,6 +10,10 @@ from pydantic.alias_generators import to_camel
 ProductStatus = Literal["collected", "extracting", "partial"]
 ShadeStatus = Literal["extracted", "failed"]
 Retailer = Literal["amazon", "ulta", "sephora"]
+# Where a product came from; "catalog" is the curated catalog/products.json import.
+ProductSource = Literal["amazon", "ulta", "sephora", "catalog"]
+# "rectangle" plots hue left-right and lightness top-bottom; "wheel" is the full color wheel.
+ColorMapShape = Literal["rectangle", "wheel"]
 
 
 class ApiModel(BaseModel):
@@ -21,7 +25,7 @@ class ApiModel(BaseModel):
 
 class Product(ApiModel):
     id: UUID
-    retailer: Retailer = "amazon"
+    retailer: ProductSource = "amazon"
     asin: str
     title: str
     brand: str | None = None
@@ -42,6 +46,7 @@ class Shade(ApiModel):
     hex: str | None = None
     hue: float | None = None
     lightness: float | None = None
+    undertone: str | None = None
     status: ShadeStatus
     error: str | None = None
 
@@ -54,14 +59,18 @@ class Marker(ApiModel):
     hex: str
     hue: float
     lightness: float
+    undertone: str | None = None
     x: float
     y: float
 
 
 class ColorMap(ApiModel):
+    # image_url is the plain background shown in the app; download_url adds labels and markers.
     image_url: str
+    download_url: str
     width: int
     height: int
+    shape: ColorMapShape = "rectangle"
     markers: list[Marker]
 
 
@@ -87,6 +96,7 @@ class ShadeList(ApiModel):
 
 class ColorMapRequest(ApiModel):
     product_ids: list[UUID] | None = None
+    shape: ColorMapShape = "rectangle"
 
 
 class HealthResponse(ApiModel):

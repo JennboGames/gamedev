@@ -195,7 +195,7 @@ export function MapCanvas({ colorMap, selectedShadeId, onSelect }: MapCanvasProp
       className={mergeClasses(styles.frame, zoomed && styles.zoomed, dragging && styles.dragging)}
       style={{ aspectRatio: `${colorMap.width} / ${colorMap.height}`, touchAction: zoomed ? 'none' : 'auto' }}
       role="group"
-      aria-label="Foundation shade map. Scroll or use plus and minus to zoom, drag to pan, 0 to reset."
+      aria-label={`Foundation ${colorMap.shape === 'wheel' ? 'color wheel' : 'shade map'}. Scroll or use plus and minus to zoom, drag to pan, 0 to reset.`}
       tabIndex={0}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
@@ -207,7 +207,11 @@ export function MapCanvas({ colorMap, selectedShadeId, onSelect }: MapCanvasProp
         <img
           className={styles.image}
           src={colorMap.imageUrl}
-          alt="Color map: red on the left to yellow on the right; white at the top to black at the bottom"
+          alt={
+            colorMap.shape === 'wheel'
+              ? 'Color wheel: hue runs around the circle starting at red on top; white in the center to black on the rim'
+              : 'Color map: red on the left to yellow on the right; light at the top to rich at the bottom'
+          }
           draggable={false}
         />
         {colorMap.markers.map((marker) => (
@@ -226,10 +230,14 @@ export function MapCanvas({ colorMap, selectedShadeId, onSelect }: MapCanvasProp
           </Tooltip>
         ))}
       </div>
-      <Caption1Strong className={mergeClasses(styles.axis, styles.left)}>Red</Caption1Strong>
-      <Caption1Strong className={mergeClasses(styles.axis, styles.right)}>Yellow</Caption1Strong>
-      <Caption1Strong className={mergeClasses(styles.axis, styles.top)}>White</Caption1Strong>
-      <Caption1Strong className={mergeClasses(styles.axis, styles.bottom)}>Black</Caption1Strong>
+      {colorMap.shape === 'wheel' ? null : (
+        <>
+          <Caption1Strong className={mergeClasses(styles.axis, styles.left)}>Red</Caption1Strong>
+          <Caption1Strong className={mergeClasses(styles.axis, styles.right)}>Yellow</Caption1Strong>
+          <Caption1Strong className={mergeClasses(styles.axis, styles.top)}>Light</Caption1Strong>
+          <Caption1Strong className={mergeClasses(styles.axis, styles.bottom)}>Rich</Caption1Strong>
+        </>
+      )}
       <div className={styles.controls} data-map-controls>
         <Button
           size="small"

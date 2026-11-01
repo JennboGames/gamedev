@@ -39,7 +39,9 @@ _PRODUCT_SELECT = """
     FROM products p
 """
 
-_SHADE_COLUMNS = "id, product_id, asin, name, swatch_url, hex, hue, lightness, status, error"
+_SHADE_COLUMNS = (
+    "id, product_id, asin, name, swatch_url, hex, hue, lightness, undertone, status, error"
+)
 
 
 def _product_status(extractions: list[ShadeExtraction]) -> ProductStatus:
@@ -72,6 +74,7 @@ def _to_shade(row: dict[str, Any]) -> Shade:
         hex=row["hex"],
         hue=row["hue"],
         lightness=row["lightness"],
+        undertone=row["undertone"],
         status=row["status"],
         error=row["error"],
     )
@@ -86,6 +89,7 @@ def _to_map_shade(row: dict[str, Any]) -> MapShade:
         hex=row["hex"],
         hue=float(row["hue"]),
         lightness=float(row["lightness"]),
+        undertone=row["undertone"],
     )
 
 
@@ -145,12 +149,13 @@ class PostgresShadeRepository:
                     cur.execute(
                         """
                         INSERT INTO shades (id, product_id, asin, name, swatch_url, swatch_blob_name,
-                                            hex, hue, lightness, status, error)
-                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                            hex, hue, lightness, undertone, status, error)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         ON CONFLICT (product_id, asin) DO UPDATE SET
                             name = EXCLUDED.name, swatch_url = EXCLUDED.swatch_url,
                             swatch_blob_name = EXCLUDED.swatch_blob_name, hex = EXCLUDED.hex,
                             hue = EXCLUDED.hue, lightness = EXCLUDED.lightness,
+                            undertone = EXCLUDED.undertone,
                             status = EXCLUDED.status, error = EXCLUDED.error, updated_at = now()
                         """,
                         (
@@ -163,6 +168,7 @@ class PostgresShadeRepository:
                             extraction.hex,
                             extraction.hue,
                             extraction.lightness,
+                            item.shade.undertone,
                             extraction.status,
                             extraction.error,
                         ),
@@ -174,6 +180,22 @@ class PostgresShadeRepository:
                 saved = {str(row["id"]): _to_product(row) for row in cur.fetchall()}
 
         return search_id, [saved[pid] for pid in product_ids if pid in saved]
+
+    def delete_unlisted(self, retailer: str, keep: list[CollectedProduct]) -> None:
+        pairs = [(c.product.asin, s.shade.asin) for c in keep for s in c.shades]
+        with self._transaction() as cur:
+            cur.execute(
+                """
+                DELETE FROM shades s USING products p
+                WHERE s.product_id = p.id AND p.retailer = %s
+                  AND (p.asin, s.asin) NOT IN (SELECT * FROM unnest(%s::text[], %s::text[]))
+                """,
+                (retailer, [p for p, _ in pairs], [s for _, s in pairs]),
+            )
+            cur.execute(
+                "DELETE FROM products WHERE retailer = %s AND asin <> ALL(%s::text[])",
+                (retailer, [c.product.asin for c in keep]),
+            )
 
     def list_products(self) -> list[Product]:
         with self._transaction() as cur:
@@ -233,10 +255,12 @@ class PostgresShadeRepository:
             )
             return _to_shade(row)
 
-    def list_map_shades(self, product_ids: list[str] | None) -> list[MapShade]:
+    def list_map_shades(
+        self, product_ids: list[str] | None, retailer: str | None = None
+    ) -> list[MapShade]:
         sql = """
             SELECT s.id AS shade_id, s.product_id, s.name AS shade_name, p.title AS product_title,
-                   s.hex, s.hue, s.lightness
+                   s.hex, s.hue, s.lightness, s.undertone
             FROM shades s JOIN products p ON p.id = s.product_id
             WHERE s.hex IS NOT NULL
         """
@@ -244,6 +268,9 @@ class PostgresShadeRepository:
         if product_ids:
             sql += " AND s.product_id = ANY(%s::uuid[])"
             params = (product_ids,)
+        if retailer:
+            sql += " AND p.retailer = %s"
+            params += (retailer,)
         sql += " ORDER BY p.title, s.name"
         with self._transaction() as cur:
             cur.execute(sql, params)
@@ -252,8 +279,8 @@ class PostgresShadeRepository:
     def save_color_map(self, record: ColorMapRecord) -> None:
         with self._transaction() as cur:
             cur.execute(
-                "INSERT INTO color_maps (id, blob_name, width, height) VALUES (%s, %s, %s, %s)",
-                (record.id, record.blob_name, record.width, record.height),
+                "INSERT INTO color_maps (id, blob_name, width, height, shape) VALUES (%s, %s, %s, %s, %s)",
+                (record.id, record.blob_name, record.width, record.height, record.shape),
             )
             cur.executemany(
                 """
@@ -275,17 +302,19 @@ class PostgresShadeRepository:
                 ],
             )
 
-    def get_latest_color_map(self) -> ColorMapRecord | None:
+    def get_latest_color_map(self, shape: str = "rectangle") -> ColorMapRecord | None:
         with self._transaction() as cur:
             cur.execute(
-                "SELECT id, blob_name, width, height FROM color_maps ORDER BY created_at DESC LIMIT 1"
+                "SELECT id, blob_name, width, height, shape FROM color_maps"
+                " WHERE shape = %s ORDER BY created_at DESC LIMIT 1",
+                (shape,),
             )
             header = cur.fetchone()
             if header is None:
                 return None
             cur.execute(
                 """
-                SELECT m.x, m.y, m.hex, m.hue, m.lightness, s.id AS shade_id, s.product_id,
+                SELECT m.x, m.y, m.hex, m.hue, m.lightness, s.undertone, s.id AS shade_id, s.product_id,
                        s.name AS shade_name, p.title AS product_title
                 FROM color_map_markers m
                 JOIN shades s ON s.id = m.shade_id
@@ -305,6 +334,7 @@ class PostgresShadeRepository:
                 width=header["width"],
                 height=header["height"],
                 markers=markers,
+                shape=header["shape"],
             )
 
     def health_check(self) -> bool:

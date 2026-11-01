@@ -32,6 +32,26 @@ def _label(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, font) -> N
     draw.text(xy, text, fill=(43, 35, 33), font=font)
 
 
+def draw_markers(
+    draw: ImageDraw.ImageDraw, markers: list[PlottedMarker], width: int, height: int
+) -> None:
+    for marker in markers:
+        cx = round(marker.x * (width - 1))
+        cy = round(marker.y * (height - 1))
+        box = (cx - _MARKER_RADIUS, cy - _MARKER_RADIUS, cx + _MARKER_RADIUS, cy + _MARKER_RADIUS)
+        draw.ellipse(
+            box,
+            fill=(*hex_to_rgb(marker.shade.hex), 255),
+            outline=(255, 255, 255, 255),
+            width=3,
+        )
+        draw.ellipse(
+            (box[0] - 1, box[1] - 1, box[2] + 1, box[3] + 1),
+            outline=(43, 35, 33, 255),
+            width=1,
+        )
+
+
 class ColorMapRenderer:
     def __init__(self, width: int = 900, height: int = 600) -> None:
         self.width = width
@@ -41,35 +61,25 @@ class ColorMapRenderer:
         return [PlottedMarker(s, *map_position(s.hue, s.lightness)) for s in shades]
 
     def render(self, markers: list[PlottedMarker]) -> bytes:
+        """The complete image, with axis labels and markers (for download)."""
+        return self._render(markers, labels=True)
+
+    def render_background(self) -> bytes:
+        """Only the gradient; the web app overlays labels and markers so they stay crisp when zoomed."""
+        return self._render([], labels=False)
+
+    def _render(self, markers: list[PlottedMarker], *, labels: bool) -> bytes:
         image = _background(self.width, self.height).convert("RGBA")
         draw = ImageDraw.Draw(image, "RGBA")
         font = ImageFont.load_default()
 
-        _label(draw, (_MARGIN, self.height // 2 - 6), "Red", font)
-        _label(draw, (self.width - 64, self.height // 2 - 6), "Yellow", font)
-        _label(draw, (self.width // 2 - 14, _MARGIN), "White", font)
-        _label(draw, (_MARGIN, self.height - 26), "Black", font)
+        if labels:
+            _label(draw, (_MARGIN, self.height // 2 - 6), "Red", font)
+            _label(draw, (self.width - 64, self.height // 2 - 6), "Yellow", font)
+            _label(draw, (self.width // 2 - 14, _MARGIN), "White", font)
+            _label(draw, (_MARGIN, self.height - 26), "Black", font)
 
-        for marker in markers:
-            cx = round(marker.x * (self.width - 1))
-            cy = round(marker.y * (self.height - 1))
-            box = (
-                cx - _MARKER_RADIUS,
-                cy - _MARKER_RADIUS,
-                cx + _MARKER_RADIUS,
-                cy + _MARKER_RADIUS,
-            )
-            draw.ellipse(
-                box,
-                fill=(*hex_to_rgb(marker.shade.hex), 255),
-                outline=(255, 255, 255, 255),
-                width=3,
-            )
-            draw.ellipse(
-                (box[0] - 1, box[1] - 1, box[2] + 1, box[3] + 1),
-                outline=(43, 35, 33, 255),
-                width=1,
-            )
+        draw_markers(draw, markers, self.width, self.height)
 
         buffer = BytesIO()
         image.convert("RGB").save(buffer, format="PNG")

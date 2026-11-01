@@ -1,6 +1,7 @@
 import type {
   ColorMap,
   ColorMapRequest,
+  ColorMapShape,
   HealthResponse,
   Product,
   SearchRequest,
@@ -8,7 +9,7 @@ import type {
   Shade,
 } from '../types';
 
-/** One typed method per plan route; the mock and the live client both implement this. */
+/** One typed method per plan route; implemented by the live client. */
 export interface ApiClient {
   /** GET /api/health */
   getHealth(): Promise<HealthResponse>;
@@ -24,6 +25,6 @@ export interface ApiClient {
   extractShadeHex(shadeId: string): Promise<Shade>;
   /** POST /api/color-map */
   generateColorMap(request?: ColorMapRequest): Promise<ColorMap>;
-  /** GET /api/color-map; resolves null when no map has been generated (404). */
-  getColorMap(): Promise<ColorMap | null>;
+  /** GET /api/color-map; resolves null when none of that shape has been generated (404). */
+  getColorMap(shape?: ColorMapShape): Promise<ColorMap | null>;
 }

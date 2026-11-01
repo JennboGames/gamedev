@@ -7,6 +7,7 @@ from src.functions import (
     get_color_map,
     get_product,
     health,
+    import_catalog,
     list_product_shades,
     list_products,
     openapi,
@@ -21,6 +22,7 @@ app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 for module in (
     health,
     create_search,
+    import_catalog,
     list_products,
     get_product,
     list_product_shades,

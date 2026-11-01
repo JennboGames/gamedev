@@ -10,6 +10,7 @@ from src.functions import (
     get_color_map,
     get_product,
     health,
+    import_catalog,
     list_product_shades,
     list_products,
     openapi,
@@ -214,6 +215,28 @@ def test_health_degraded_still_returns_200(services):
     assert json_of(response)["status"] == "degraded"
 
 
+def test_import_catalog_returns_201_with_catalog_products(services, tmp_path):
+    path = tmp_path / "products.json"
+    path.write_text(
+        json.dumps(
+            [
+                {
+                    "company": "MAC",
+                    "products": [{"name": "Fluid", "shades": [{"name": "NC15", "hex": "#E0B79A"}]}],
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    services.catalog_path = path
+
+    response = call(import_catalog, "import_catalog", method="POST")
+
+    assert response.status_code == 201
+    product = json_of(response)["products"][0]
+    assert (product["retailer"], product["brand"], product["shadeCount"]) == ("catalog", "MAC", 1)
+
+
 def test_health_unhealthy_returns_503(services):
     services.repository.healthy = False
     services.blob_store.healthy = False
@@ -235,6 +258,7 @@ def test_openapi_documents_every_route(services):
     assert {
         "/health",
         "/searches",
+        "/catalog/import",
         "/products",
         "/products/{id}",
         "/products/{id}/shades",

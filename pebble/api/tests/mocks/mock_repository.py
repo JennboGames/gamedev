@@ -45,6 +45,7 @@ class InMemoryShadeRepository:
                     hex=item.extraction.hex,
                     hue=item.extraction.hue,
                     lightness=item.extraction.lightness,
+                    undertone=item.shade.undertone,
                     status=item.extraction.status,
                     error=item.extraction.error,
                 )
@@ -62,6 +63,24 @@ class InMemoryShadeRepository:
             )
             saved.append(self.products[product_id])
         return str(uuid.uuid4()), saved
+
+    def delete_unlisted(self, retailer: str, keep: list[CollectedProduct]) -> None:
+        kept = {(c.product.asin, s.shade.asin) for c in keep for s in c.shades}
+        kept_products = {c.product.asin for c in keep}
+        for product_id, (source, asin) in list(self.product_asins.items()):
+            if source != retailer:
+                continue
+            if asin not in kept_products:
+                del self.product_asins[product_id]
+                del self.products[product_id]
+                for shade_id in [
+                    k for k, s in self.shades.items() if str(s.product_id) == product_id
+                ]:
+                    del self.shades[shade_id]
+                continue
+            for shade_id, shade in list(self.shades.items()):
+                if str(shade.product_id) == product_id and (asin, shade.asin) not in kept:
+                    del self.shades[shade_id]
 
     def list_products(self) -> list[Product]:
         return list(self.products.values())
@@ -94,11 +113,15 @@ class InMemoryShadeRepository:
         self.shades[shade_id] = updated
         return updated
 
-    def list_map_shades(self, product_ids: list[str] | None) -> list[MapShade]:
+    def list_map_shades(
+        self, product_ids: list[str] | None, retailer: str | None = None
+    ) -> list[MapShade]:
         result = []
         for shade in self.shades.values():
             product_id = str(shade.product_id)
             if shade.hex is None or (product_ids and product_id not in product_ids):
+                continue
+            if retailer and self.products[product_id].retailer != retailer:
                 continue
             result.append(
                 MapShade(
@@ -109,6 +132,7 @@ class InMemoryShadeRepository:
                     hex=shade.hex,
                     hue=shade.hue or 0.0,
                     lightness=shade.lightness or 0.0,
+                    undertone=shade.undertone,
                 )
             )
         return result
@@ -116,8 +140,9 @@ class InMemoryShadeRepository:
     def save_color_map(self, record: ColorMapRecord) -> None:
         self.color_maps.append(record)
 
-    def get_latest_color_map(self) -> ColorMapRecord | None:
-        return self.color_maps[-1] if self.color_maps else None
+    def get_latest_color_map(self, shape: str = "rectangle") -> ColorMapRecord | None:
+        matching = [m for m in self.color_maps if m.shape == shape]
+        return matching[-1] if matching else None
 
     def health_check(self) -> bool:
         return self.healthy

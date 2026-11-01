@@ -3,16 +3,19 @@
 export type ProductStatus = 'collected' | 'extracting' | 'partial';
 export type ShadeStatus = 'extracted' | 'failed';
 export type Retailer = 'amazon' | 'ulta' | 'sephora';
+/** Where a product came from; 'catalog' is the curated catalog import. */
+export type ProductSource = Retailer | 'catalog';
 
-export const RETAILER_LABELS: Record<Retailer, string> = {
+export const RETAILER_LABELS: Record<ProductSource, string> = {
   amazon: 'Amazon',
   ulta: 'Ulta',
   sephora: 'Sephora',
+  catalog: 'Catalog',
 };
 
 export interface Product {
   id: string;
-  retailer: Retailer;
+  retailer: ProductSource;
   /** The retailer's own product id (an ASIN on Amazon). */
   asin: string;
   title: string;
@@ -37,6 +40,7 @@ export interface Shade {
   hue: number | null;
   /** Percent, 0-100. */
   lightness: number | null;
+  undertone: string | null;
   status: ShadeStatus;
   error: string | null;
 }
@@ -63,20 +67,29 @@ export interface ColorMapMarker {
   hex: string;
   hue: number;
   lightness: number;
-  /** Horizontal position in [0, 1]: 0 = red edge, 1 = yellow edge. */
+  undertone: string | null;
+  /** Horizontal position in [0, 1] of the image: red to yellow on the rectangle map, the wheel's x on the wheel. */
   x: number;
-  /** Vertical position in [0, 1]: 0 = white (top), 1 = black (bottom). */
+  /** Vertical position in [0, 1] of the image: white (top) to black (bottom) on the rectangle map. */
   y: number;
 }
 
+/** 'rectangle' plots hue left to right and lightness top to bottom; 'wheel' is the full color wheel. */
+export type ColorMapShape = 'rectangle' | 'wheel';
+
 export interface ColorMapRequest {
   productIds?: string[];
+  shape?: ColorMapShape;
 }
 
 export interface ColorMap {
+  /** Plain background shown in the app; markers and labels are drawn over it. */
   imageUrl: string;
+  /** Full image with labels and markers, for download. */
+  downloadUrl: string;
   width: number;
   height: number;
+  shape: ColorMapShape;
   markers: ColorMapMarker[];
 }
 

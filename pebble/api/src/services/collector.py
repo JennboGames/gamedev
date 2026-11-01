@@ -16,6 +16,7 @@ from src.models.domain import (
 )
 from src.services.color_map import ColorMapRenderer
 from src.services.color_math import hex_to_hue_lightness
+from src.services.color_wheel import ColorWheelRenderer
 from src.services.interfaces.blob_store import BlobStore
 from src.services.interfaces.color_extractor import ColorExtractor
 from src.services.interfaces.image_fetcher import ImageFetcher
@@ -28,6 +29,10 @@ SWATCH_CONTAINER = "swatches"
 COLORMAP_CONTAINER = "colormaps"
 
 _EXTENSIONS = {"image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/gif": "gif"}
+
+
+def _download_blob_name(blob_name: str) -> str:
+    return blob_name.removesuffix(".png") + "-full.png"
 
 
 class FoundationCollector:
@@ -122,41 +127,63 @@ class FoundationCollector:
 
 class ColorMapService:
     def __init__(
-        self, repository: ShadeRepository, blob_store: BlobStore, renderer: ColorMapRenderer
+        self,
+        repository: ShadeRepository,
+        blob_store: BlobStore,
+        renderer: ColorMapRenderer,
+        retailer: str | None = None,
+        wheel_renderer: ColorWheelRenderer | None = None,
     ) -> None:
         self._repository = repository
         self._blob_store = blob_store
-        self._renderer = renderer
+        self._renderers: dict[str, ColorMapRenderer | ColorWheelRenderer] = {
+            "rectangle": renderer,
+            "wheel": wheel_renderer or ColorWheelRenderer(),
+        }
+        self._retailer = retailer
 
-    def generate(self, product_ids: list[str] | None) -> ColorMap:
-        shades = self._repository.list_map_shades(product_ids)
+    def generate(self, product_ids: list[str] | None, shape: str = "rectangle") -> ColorMap:
+        shades = self._repository.list_map_shades(product_ids, self._retailer)
         if not shades:
             raise NotFoundError("Shades with an extracted hex color")
 
-        markers = self._renderer.plot(shades)
-        png = self._renderer.render(markers)
+        renderer = self._renderers[shape]
+        markers = renderer.plot(shades)
         record = ColorMapRecord(
             id=str(uuid.uuid4()),
             blob_name=f"{uuid.uuid4()}.png",
-            width=self._renderer.width,
-            height=self._renderer.height,
+            width=renderer.width,
+            height=renderer.height,
             markers=tuple(markers),
+            shape=shape,
         )
-        self._blob_store.upload(COLORMAP_CONTAINER, record.blob_name, png, "image/png")
+        self._blob_store.upload(
+            COLORMAP_CONTAINER, record.blob_name, renderer.render_background(), "image/png"
+        )
+        self._blob_store.upload(
+            COLORMAP_CONTAINER,
+            _download_blob_name(record.blob_name),
+            renderer.render(markers),
+            "image/png",
+        )
         self._repository.save_color_map(record)
         return self._to_api(record)
 
-    def latest(self) -> ColorMap:
-        record = self._repository.get_latest_color_map()
+    def latest(self, shape: str = "rectangle") -> ColorMap:
+        record = self._repository.get_latest_color_map(shape)
         if record is None:
-            raise NotFoundError("Color map")
+            raise NotFoundError("Color wheel" if shape == "wheel" else "Color map")
         return self._to_api(record)
 
     def _to_api(self, record: ColorMapRecord) -> ColorMap:
         return ColorMap(
             image_url=self._blob_store.read_url(COLORMAP_CONTAINER, record.blob_name),
+            download_url=self._blob_store.read_url(
+                COLORMAP_CONTAINER, _download_blob_name(record.blob_name)
+            ),
             width=record.width,
             height=record.height,
+            shape=record.shape,
             markers=[
                 Marker(
                     shade_id=m.shade.shade_id,
@@ -166,6 +193,7 @@ class ColorMapService:
                     hex=m.shade.hex,
                     hue=m.shade.hue,
                     lightness=m.shade.lightness,
+                    undertone=m.shade.undertone,
                     x=m.x,
                     y=m.y,
                 )

@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS color_map_markers;
+DROP TABLE IF EXISTS color_maps;
+DROP TABLE IF EXISTS shades;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS searches;

@@ -1,6 +1,7 @@
 import { Caption1, Divider, Subtitle1, Tab, TabList, Toolbar, ToolbarButton, makeStyles, tokens } from '@fluentui/react-components';
 import {
   ChartMultipleRegular,
+  ColorRegular,
   GridRegular,
   SearchRegular,
   WeatherMoonRegular,
@@ -9,7 +10,6 @@ import {
 import { motion, useReducedMotion } from 'framer-motion';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAppTheme } from '../theme/ThemeProvider';
-import { PreviewStateSwitcher } from './PreviewStateSwitcher';
 
 const useStyles = makeStyles({
   root: {
@@ -70,6 +70,7 @@ const ROUTES = [
   { path: '/', label: 'Search', icon: <SearchRegular /> },
   { path: '/products', label: 'Products', icon: <GridRegular /> },
   { path: '/map', label: 'Shade Map', icon: <ChartMultipleRegular /> },
+  { path: '/wheel', label: 'Color Wheel', icon: <ColorRegular /> },
 ];
 
 export function AppShell() {
@@ -123,7 +124,6 @@ export function AppShell() {
         <Caption1>© Shade Map</Caption1>
         <Caption1>v0.1.0</Caption1>
       </footer>
-      <PreviewStateSwitcher />
     </div>
   );
 }

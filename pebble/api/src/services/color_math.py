@@ -5,11 +5,14 @@ lightness runs white (top) -> black (bottom).
 """
 
 import colorsys
+import math
 import re
 
 _HEX_RE = re.compile(r"^#[0-9A-Fa-f]{6}$")
 
 HUE_SPAN_DEGREES = 60.0
+# The wheel's radius as a fraction of the square image; the rest is a margin for hue labels.
+WHEEL_RADIUS = 0.44
 
 
 def is_valid_hex(value: str) -> bool:
@@ -40,3 +43,14 @@ def map_position(hue: float, lightness: float) -> tuple[float, float]:
     x = min(max(hue / HUE_SPAN_DEGREES, 0.0), 1.0)
     y = min(max(1 - lightness / 100, 0.0), 1.0)
     return round(x, 4), round(y, 4)
+
+
+def wheel_position(hue: float, lightness: float) -> tuple[float, float]:
+    """Normalized (x, y) on the color wheel.
+
+    Hue is the angle, clockwise from the top (red); lightness is the distance from the
+    center (white in the middle, black on the rim).
+    """
+    radius = WHEEL_RADIUS * min(max(1 - lightness / 100, 0.0), 1.0)
+    angle = math.radians(hue)
+    return round(0.5 + radius * math.sin(angle), 4), round(0.5 - radius * math.cos(angle), 4)

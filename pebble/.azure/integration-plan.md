@@ -22,9 +22,10 @@ Hand-off from `azure-project-scaffold` to `azure-project-integrate`. Paths are w
 | GET | `/products/{id}` | 200 Product | 404, 422 (bad uuid) |
 | GET | `/products/{id}/shades` | 200 `{ items[] }` | 404, 422 |
 | POST | `/shades/{id}/extract-hex` | 200 Shade | 404, 422, 502 |
-| POST | `/color-map` body `{ productIds? }` (optional) | 201 ColorMap | 404, 422 |
-| GET | `/color-map` | 200 ColorMap | 404 |
+| POST | `/color-map` body `{ productIds?, shape? }` (`shape` is `rectangle` (default) or `wheel`) | 201 ColorMap | 404, 422 |
+| GET | `/color-map?shape=rectangle\|wheel` (latest of that shape) | 200 ColorMap | 404, 422 |
 | GET | `/openapi.json` | 200 | |
+| POST | `/catalog/import` (reads `catalog/products.json`; override with `CATALOG_PATH`) | 201 `{ searchId, products[] }` | 422, 500 |
 
 Error shape: `{ error: { code, message, details? } }`.
 
@@ -74,3 +75,10 @@ Error shape: `{ error: { code, message, details? } }`.
 ## Notes for deployment later
 - Production blob containers are private; `ColorMap.imageUrl` is a 1-hour user-delegation SAS URL generated per request.
 - Containers `swatches` and `colormaps` must exist (or the identity needs permission to create them) in production.
+
+## Integration results
+- Migrations: `0001_initial_schema`, `0002_catalog_retailer` (adds `catalog` to `products.retailer`); `python migrate.py up|down|status`; applied, rolled back and re-applied cleanly. No seed data.
+- Backend: all 10 routes register under `func start`; `/health` is 200 `degraded` (Amazon keys empty); probes return 200/404/422, no 500s. 102 pytest tests pass.
+- Data source for now: `POST /api/catalog/import` loads `catalog/products.json` (company, product, shades with hex) as `catalog` products. The color map plots only `catalog` products (`color_map_retailer` in `registry.py`) until Amazon PA-API access exists; remove that argument to plot every source.
+- Frontend: `src/api/index.ts` uses `liveClient`; mock layer, `previewState` and the Mock State Switcher are deleted; Vite proxies `/api` to `http://localhost:7071`. The Search page keeps Amazon and Ulta checkboxes. `npm run build` and `npm test` pass.
+- End to end: the Shade Map page rendered 121 shades from the live API (catalog import, then `POST /api/color-map`).

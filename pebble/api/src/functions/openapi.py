@@ -117,6 +117,16 @@ def build_openapi_spec() -> dict:
                     },
                 }
             },
+            "/catalog/import": {
+                "post": {
+                    "summary": "Import catalog/products.json as products and shades with hex colors",
+                    "responses": {
+                        "201": _json("SearchResponse", "Catalog imported"),
+                        "422": _error("Catalog is invalid"),
+                        "500": _error("Catalog file is missing"),
+                    },
+                }
+            },
             "/products": {
                 "get": {
                     "summary": "List collected products",
@@ -171,10 +181,19 @@ def build_openapi_spec() -> dict:
                     },
                 },
                 "get": {
-                    "summary": "Latest color map",
+                    "summary": "Latest color map or color wheel",
+                    "parameters": [
+                        {
+                            "name": "shape",
+                            "in": "query",
+                            "required": False,
+                            "schema": {"type": "string", "enum": ["rectangle", "wheel"]},
+                        }
+                    ],
                     "responses": {
                         "200": _json("ColorMap", "Color map"),
-                        "404": _error("No color map generated yet"),
+                        "404": _error("None generated yet"),
+                        "422": _error("Unknown shape"),
                     },
                 },
             },

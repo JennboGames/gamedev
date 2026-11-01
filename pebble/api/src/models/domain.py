@@ -9,6 +9,7 @@ class AmazonShade:
     asin: str
     name: str
     swatch_url: str | None
+    undertone: str | None = None
 
 
 @dataclass(frozen=True)
@@ -69,6 +70,7 @@ class MapShade:
     hex: str
     hue: float
     lightness: float
+    undertone: str | None = None
 
 
 @dataclass(frozen=True)
@@ -85,3 +87,4 @@ class ColorMapRecord:
     width: int
     height: int
     markers: tuple[PlottedMarker, ...]
+    shape: str = "rectangle"
