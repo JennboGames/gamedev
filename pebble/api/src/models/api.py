@@ -9,9 +9,8 @@ from pydantic.alias_generators import to_camel
 
 ProductStatus = Literal["collected", "extracting", "partial"]
 ShadeStatus = Literal["extracted", "failed"]
-Retailer = Literal["amazon", "ulta", "sephora"]
 # Where a product came from; "catalog" is the curated catalog/products.json import.
-ProductSource = Literal["amazon", "ulta", "sephora", "catalog"]
+ProductSource = Literal["ulta", "sephora", "catalog"]
 # "rectangle" plots hue left-right and lightness top-bottom; "wheel" is the full color wheel.
 ColorMapShape = Literal["rectangle", "wheel"]
 
@@ -25,7 +24,7 @@ class ApiModel(BaseModel):
 
 class Product(ApiModel):
     id: UUID
-    retailer: ProductSource = "amazon"
+    retailer: ProductSource = "catalog"
     asin: str
     title: str
     brand: str | None = None
@@ -77,7 +76,6 @@ class ColorMap(ApiModel):
 class SearchRequest(ApiModel):
     query: str = Field(min_length=2, max_length=200)
     max_products: int = Field(default=20, ge=1, le=50)
-    retailers: list[Retailer] = Field(default_factory=lambda: ["amazon"], min_length=1)
 
 
 class SearchResponse(ApiModel):

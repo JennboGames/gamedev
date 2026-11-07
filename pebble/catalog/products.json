@@ -5,361 +5,82 @@
             {
                 "name": "Double Wear Stay-in-Place Longwear Matte Foundation",
                 "finish": "natural matte",
+                "spf": false,
                 "url-Official" : "https://www.esteelauder.com/product/643/141225",
                 "url-Amazon" : "https://link.amazon/B06RoxW8J", 
                 "url-Sephora" : "https://www.sephora.com/product/double-wear-stay-in-place-lightweight-matte-foundation-with-36-hour-wear-P520286", 
                 "url-Ulta" : "https://www.ulta.com/p/double-wear-stay-in-place-longwear-matte-foundation-pimprod2057355?sku=2651970",
                 "shades": [
-                    {
-                        "name": "0C1 Cool Sand",
-                        "undertone": "cool",
-                        "hex": "#e9d1c8"
-                    },
-                    {
-                        "name": "0N1 Alabaster",
-                        "undertone": "neutral",
-                        "hex": "#eacebe"
-                    },
-                    {
-                        "name": "0W1 Warm Ivory",
-                        "undertone": "warm",
-                        "hex": "#e7cfc1"
-                    },
-                    {
-                        "name": "1C0 Shell",
-                        "undertone": "cool",
-                        "hex": "#e9c9ba"
-                    },
-                    {
-                        "name": "1C1 Cool Bone",
-                        "undertone": "cool",
-                        "hex": "#e8cab9"
-                    },
-                    {
-                        "name": "1C2 Petal",
-                        "undertone": "cool",
-                        "hex": "#e2bfae"
-                    },
-                    {
-                        "name": "1N0 Porcelain",
-                        "undertone": "neutral",
-                        "hex": "#e6c1ac"
-                    },
-                    {
-                        "name": "1N1 Ivory Nude",
-                        "undertone": "neutral",
-                        "hex": "#edc8ae"
-                    },
-                    {
-                        "name": "1N2 Ecru",
-                        "undertone": "neutral",
-                        "hex": "#d8b39d"
-                    },
-                    {
-                        "name": "1W0 Warm Porcelain",
-                        "undertone": "warm",
-                        "hex": "#e1bda2"
-                    },
-                    {
-                        "name": "1W1 Bone",
-                        "undertone": "warm",
-                        "hex": "#e0b493"
-                    },
-                    {
-                        "name": "1W2 Sand",
-                        "undertone": "warm",
-                        "hex": "#e3bb9a"
-                    },
-                    {
-                        "name": "1W2.5 Golden Sand",
-                        "undertone": "warm",
-                        "hex": "#dfb288"
-                    },
-                    {
-                        "name": "2C0 Cool Vanilla",
-                        "undertone": "cool",
-                        "hex": "#e9bda7"
-                    },
-                    {
-                        "name": "2C1 Pure Beige",
-                        "undertone": "cool",
-                        "hex": "#ddb195"
-                    },
-                    {
-                        "name": "2C2 Pale Almond",
-                        "undertone": "cool",
-                        "hex": "#d6a892"
-                    },
-                    {
-                        "name": "2C3 Fresco",
-                        "undertone": "cool",
-                        "hex": "#d8a790"
-                    },
-                    {
-                        "name": "2C4 Ivory Rose",
-                        "undertone": "cool",
-                        "hex": "#d8a797"
-                    },
-                    {
-                        "name": "2N1 Desert Beige",
-                        "undertone": "neutral",
-                        "hex": "#e2b496"
-                    },
-                    {
-                        "name": "2N2 Buff",
-                        "undertone": "neutral",
-                        "hex": "#d8a887"
-                    },
-                    {
-                        "name": "2N3 Dolce",
-                        "undertone": "neutral",
-                        "hex": "#daa587"
-                    },
-                    {
-                        "name": "2W0 Warm Vanilla",
-                        "undertone": "warm",
-                        "hex": "#d5a687"
-                    },
-                    {
-                        "name": "2W1 Dawn",
-                        "undertone": "warm",
-                        "hex": "#d6a482"
-                    },
-                    {
-                        "name": "2W1.5 Natural Suede",
-                        "undertone": "warm",
-                        "hex": "#d4a77f"
-                    },
-                    {
-                        "name": "2W2 Rattan",
-                        "undertone": "warm",
-                        "hex": "#d6ad88"
-                    },
-                    {
-                        "name": "3C0 Cool Crème",
-                        "undertone": "cool",
-                        "hex": "#d8ad92"
-                    },
-                    {
-                        "name": "3C1 Dusk",
-                        "undertone": "cool",
-                        "hex": "#dea787"
-                    },
-                    {
-                        "name": "3C2 Pebble",
-                        "undertone": "cool",
-                        "hex": "#e2af93"
-                    },
-                    {
-                        "name": "3C3 Sandbar",
-                        "undertone": "cool",
-                        "hex": "#dea686"
-                    },
-                    {
-                        "name": "3N1 Ivory Beige",
-                        "undertone": "neutral",
-                        "hex": "#d8a082"
-                    },
-                    {
-                        "name": "3N2 Wheat",
-                        "undertone": "neutral",
-                        "hex": "#d79f7b"
-                    },
-                    {
-                        "name": "3W0 Warm Crème",
-                        "undertone": "warm",
-                        "hex": "#d89b76"
-                    },
-                    {
-                        "name": "3W1 Tawny",
-                        "undertone": "warm",
-                        "hex": "#d89c73"
-                    },
-                    {
-                        "name": "3W1.5 Fawn",
-                        "undertone": "warm",
-                        "hex": "#d39e75"
-                    },
-                    {
-                        "name": "3W2 Cashew",
-                        "undertone": "warm",
-                        "hex": "#cf976d"
-                    },
-                    {
-                        "name": "4C1 Outdoor Beige",
-                        "undertone": "cool",
-                        "hex": "#d19d82"
-                    },
-                    {
-                        "name": "4C2 Auburn",
-                        "undertone": "cool",
-                        "hex": "#d49574"
-                    },
-                    {
-                        "name": "4C3 Softan",
-                        "undertone": "cool",
-                        "hex": "#d49b81"
-                    },
-                    {
-                        "name": "4N1 Shell Beige",
-                        "undertone": "neutral",
-                        "hex": "#ce9576"
-                    },
-                    {
-                        "name": "4N2 Spiced Sand",
-                        "undertone": "neutral",
-                        "hex": "#c78c67"
-                    },
-                    {
-                        "name": "4N3 Maple Sugar",
-                        "undertone": "neutral",
-                        "hex": "#c38964"
-                    },
-                    {
-                        "name": "4W1 Honey Bronze",
-                        "undertone": "warm",
-                        "hex": "#d59c76"
-                    },
-                    {
-                        "name": "4W1.5 Medium Spice",
-                        "undertone": "warm",
-                        "hex": "#c68e68"
-                    },
-                    {
-                        "name": "4W2 Toasty Toffee",
-                        "undertone": "warm",
-                        "hex": "#d09269"
-                    },
-                    {
-                        "name": "4W3 Henna",
-                        "undertone": "warm",
-                        "hex": "#c38e68"
-                    },
-                    {
-                        "name": "4W4 Hazel",
-                        "undertone": "warm",
-                        "hex": "#ce9067"
-                    },
-                    {
-                        "name": "5C1 Rich Chestnut",
-                        "undertone": "cool",
-                        "hex": "#b56a4d"
-                    },
-                    {
-                        "name": "5C2 Sepia",
-                        "undertone": "cool",
-                        "hex": "#ba714d"
-                    },
-                    {
-                        "name": "5N1 Rich Ginger",
-                        "undertone": "neutral",
-                        "hex": "#bf7a56"
-                    },
-                    {
-                        "name": "5N1.5 Maple",
-                        "undertone": "neutral",
-                        "hex": "#ba7651"
-                    },
-                    {
-                        "name": "5N2 Amber Honey",
-                        "undertone": "neutral",
-                        "hex": "#b5714b"
-                    },
-                    {
-                        "name": "5N3 Spiced Amber",
-                        "undertone": "neutral",
-                        "hex": "#b46b47"
-                    },
-                    {
-                        "name": "5W1 Bronze",
-                        "undertone": "warm",
-                        "hex": "#c1805c"
-                    },
-                    {
-                        "name": "5W1.5 Cinnamon",
-                        "undertone": "warm",
-                        "hex": "#c17f53"
-                    },
-                    {
-                        "name": "5W2 Rich Caramel",
-                        "undertone": "warm",
-                        "hex": "#bf7a53"
-                    },
-                    {
-                        "name": "6C1 Rich Cocoa",
-                        "undertone": "cool",
-                        "hex": "#ad6849"
-                    },
-                    {
-                        "name": "6C2 Pecan",
-                        "undertone": "cool",
-                        "hex": "#a66149"
-                    },
-                    {
-                        "name": "6N1 Mocha",
-                        "undertone": "neutral",
-                        "hex": "#a8684a"
-                    },
-                    {
-                        "name": "6N2 Truffle",
-                        "undertone": "neutral",
-                        "hex": "#9a5f48"
-                    },
-                    {
-                        "name": "6W1 Sandalwood",
-                        "undertone": "warm",
-                        "hex": "#a66446"
-                    },
-                    {
-                        "name": "6W2 Nutmeg",
-                        "undertone": "warm",
-                        "hex": "#a96546"
-                    },
-                    {
-                        "name": "7C1 Rich Mahogany",
-                        "undertone": "cool",
-                        "hex": "#824332"
-                    },
-                    {
-                        "name": "7C2 Sienna",
-                        "undertone": "cool",
-                        "hex": "#8c4937"
-                    },
-                    {
-                        "name": "7N1 Deep Amber",
-                        "undertone": "neutral",
-                        "hex": "#8a4e36"
-                    },
-                    {
-                        "name": "7W1 Deep Spice",
-                        "undertone": "warm",
-                        "hex": "#92573d"
-                    },
-                    {
-                        "name": "8C1 Rich Java",
-                        "undertone": "cool",
-                        "hex": "#6c3427"
-                    },
-                    {
-                        "name": "8N1 Espresso",
-                        "undertone": "neutral",
-                        "hex": "#744335"
-                    },
-                    {
-                        "name": "8W1 Warm Espresso",
-                        "undertone": "warm",
-                        "hex": "#663227"
-                    },
-                    {
-                        "name": "9C1 Fudge",
-                        "undertone": "cool",
-                        "hex": "#5b3126"
-                    },
-                    {
-                        "name": "9N1 Ebony",
-                        "undertone": "neutral",
-                        "hex": "#402a27"
-                    }
+                    { "name": "0C1 Cool Sand", "undertone": "cool", "hex": "#e9d1c8" },
+                    { "name": "0N1 Alabaster", "undertone": "neutral", "hex": "#eacebe" },
+                    { "name": "0W1 Warm Ivory", "undertone": "warm", "hex": "#e7cfc1" },
+                    { "name": "1C0 Shell", "undertone": "cool", "hex": "#e9c9ba" },
+                    { "name": "1C1 Cool Bone", "undertone": "cool", "hex": "#e8cab9" },
+                    { "name": "1C2 Petal", "undertone": "cool", "hex": "#e2bfae" },
+                    { "name": "1N0 Porcelain", "undertone": "neutral", "hex": "#e6c1ac" },
+                    { "name": "1N1 Ivory Nude", "undertone": "neutral", "hex": "#edc8ae" },
+                    { "name": "1N2 Ecru", "undertone": "neutral", "hex": "#d8b39d" },
+                    { "name": "1W0 Warm Porcelain", "undertone": "warm", "hex": "#e1bda2" },
+                    { "name": "1W1 Bone", "undertone": "warm", "hex": "#e0b493" },
+                    { "name": "1W2 Sand", "undertone": "warm", "hex": "#e3bb9a" },
+                    { "name": "1W2.5 Golden Sand", "undertone": "warm", "hex": "#dfb288" },
+                    { "name": "2C0 Cool Vanilla", "undertone": "cool", "hex": "#e9bda7" },
+                    { "name": "2C1 Pure Beige", "undertone": "cool", "hex": "#ddb195" },
+                    { "name": "2C2 Pale Almond", "undertone": "cool", "hex": "#d6a892" },
+                    { "name": "2C3 Fresco", "undertone": "cool", "hex": "#d8a790" },
+                    { "name": "2C4 Ivory Rose", "undertone": "cool", "hex": "#d8a797" },
+                    { "name": "2N1 Desert Beige", "undertone": "neutral", "hex": "#e2b496" },
+                    { "name": "2N2 Buff", "undertone": "neutral", "hex": "#d8a887" },
+                    { "name": "2N3 Dolce", "undertone": "neutral", "hex": "#daa587" },
+                    { "name": "2W0 Warm Vanilla", "undertone": "warm", "hex": "#d5a687" },
+                    { "name": "2W1 Dawn", "undertone": "warm", "hex": "#d6a482" },
+                    { "name": "2W1.5 Natural Suede", "undertone": "warm", "hex": "#d4a77f" },
+                    { "name": "2W2 Rattan", "undertone": "warm", "hex": "#d6ad88" },
+                    { "name": "3C0 Cool Crème", "undertone": "cool", "hex": "#d8ad92" },
+                    { "name": "3C1 Dusk", "undertone": "cool", "hex": "#dea787" },
+                    { "name": "3C2 Pebble", "undertone": "cool", "hex": "#e2af93" },
+                    { "name": "3C3 Sandbar", "undertone": "cool", "hex": "#dea686" },
+                    { "name": "3N1 Ivory Beige", "undertone": "neutral", "hex": "#d8a082" },
+                    { "name": "3N2 Wheat", "undertone": "neutral", "hex": "#d79f7b" },
+                    { "name": "3W0 Warm Crème", "undertone": "warm", "hex": "#d89b76" },
+                    { "name": "3W1 Tawny", "undertone": "warm", "hex": "#d89c73" },
+                    { "name": "3W1.5 Fawn", "undertone": "warm", "hex": "#d39e75" },
+                    { "name": "3W2 Cashew", "undertone": "warm", "hex": "#cf976d" },
+                    { "name": "4C1 Outdoor Beige", "undertone": "cool", "hex": "#d19d82" },
+                    { "name": "4C2 Auburn", "undertone": "cool", "hex": "#d49574" },
+                    { "name": "4C3 Softan", "undertone": "cool", "hex": "#d49b81" },
+                    { "name": "4N1 Shell Beige", "undertone": "neutral", "hex": "#ce9576" },
+                    { "name": "4N2 Spiced Sand", "undertone": "neutral", "hex": "#c78c67" },
+                    { "name": "4N3 Maple Sugar", "undertone": "neutral", "hex": "#c38964" },
+                    { "name": "4W1 Honey Bronze", "undertone": "warm", "hex": "#d59c76" },
+                    { "name": "4W1.5 Medium Spice", "undertone": "warm", "hex": "#c68e68" },
+                    { "name": "4W2 Toasty Toffee", "undertone": "warm", "hex": "#d09269" },
+                    { "name": "4W3 Henna", "undertone": "warm", "hex": "#c38e68" },
+                    { "name": "4W4 Hazel", "undertone": "warm", "hex": "#ce9067" },
+                    { "name": "5C1 Rich Chestnut", "undertone": "cool", "hex": "#b56a4d" },
+                    { "name": "5C2 Sepia", "undertone": "cool", "hex": "#ba714d" },
+                    { "name": "5N1 Rich Ginger", "undertone": "neutral", "hex": "#bf7a56" },
+                    { "name": "5N1.5 Maple", "undertone": "neutral", "hex": "#ba7651" },
+                    { "name": "5N2 Amber Honey", "undertone": "neutral", "hex": "#b5714b" },
+                    { "name": "5N3 Spiced Amber", "undertone": "neutral", "hex": "#b46b47" },
+                    { "name": "5W1 Bronze", "undertone": "warm", "hex": "#c1805c" },
+                    { "name": "5W1.5 Cinnamon", "undertone": "warm", "hex": "#c17f53" },
+                    { "name": "5W2 Rich Caramel", "undertone": "warm", "hex": "#bf7a53" },
+                    { "name": "6C1 Rich Cocoa", "undertone": "cool", "hex": "#ad6849" },
+                    { "name": "6C2 Pecan", "undertone": "cool", "hex": "#a66149" },
+                    { "name": "6N1 Mocha", "undertone": "neutral", "hex": "#a8684a" },
+                    { "name": "6N2 Truffle", "undertone": "neutral", "hex": "#9a5f48" },
+                    { "name": "6W1 Sandalwood", "undertone": "warm", "hex": "#a66446" },
+                    { "name": "6W2 Nutmeg", "undertone": "warm", "hex": "#a96546" },
+                    { "name": "7C1 Rich Mahogany", "undertone": "cool", "hex": "#824332" },
+                    { "name": "7C2 Sienna", "undertone": "cool", "hex": "#8c4937" },
+                    { "name": "7N1 Deep Amber", "undertone": "neutral", "hex": "#8a4e36" },
+                    { "name": "7W1 Deep Spice", "undertone": "warm", "hex": "#92573d" },
+                    { "name": "8C1 Rich Java", "undertone": "cool", "hex": "#6c3427" },
+                    { "name": "8N1 Espresso", "undertone": "neutral", "hex": "#744335" },
+                    { "name": "8W1 Warm Espresso", "undertone": "warm", "hex": "#663227" },
+                    { "name": "9C1 Fudge", "undertone": "cool", "hex": "#5b3126" },
+                    { "name": "9N1 Ebony", "undertone": "neutral", "hex": "#402a27" }
                 ]
             }
         ]
@@ -370,266 +91,63 @@
             {
                 "name": "Triclone™ Skin Tech Foundation",
                 "finish": "soft matte, natural",
+                "spf": false,
                 "url-Official" : "https://www.esteelauder.com/product/643/141225",
                 "url-Amazon" : "https://link.amazon/B06RoxW8J", 
                 "url-Sephora" : "https://www.sephora.com/product/double-wear-stay-in-place-lightweight-matte-foundation-with-36-hour-wear-P520286", 
                 "url-Ulta" : "https://www.ulta.com/p/double-wear-stay-in-place-longwear-matte-foundation-pimprod2057355?sku=2651970",
                  "shades": [
-                    {
-                        "name": "590 Deep",
-                        "undertone": "neutral",
-                        "hex": "#361f11"
-                    },
-                    {
-                        "name": "580 Deep",
-                        "undertone": "neutral",
-                        "hex": "#441f0b"
-                    },
-                    {
-                        "name": "570 Deep",
-                        "undertone": "golden",
-                        "hex": "#491b11"
-                    },
-                    {
-                        "name": "560 Deep",
-                        "undertone": "neutral",
-                        "hex": "#54301f"
-                    },
-                    {
-                        "name": "540 Deep",
-                        "undertone": "neutral",
-                        "hex": "#602f1a"
-                    },
-                    {
-                        "name": "530 Deep",
-                        "undertone": "neutral",
-                        "hex": "#663911"
-                    },
-                    {
-                        "name": "520 Deep",
-                        "undertone": "golden",
-                        "hex": "#682e1a"
-                    },
-                    {
-                        "name": "510 Deep",
-                        "undertone": "rosy",
-                        "hex": "#6d412b"
-                    },
-                    {
-                        "name": "500 Deep",
-                        "undertone": "neutral",
-                        "hex": "#55322e"
-                    },
-                    {
-                        "name": "490 Medium Deep",
-                        "undertone": "golden",
-                        "hex": "#73451a"
-                    },
-                    {
-                        "name": "480 Medium Deep",
-                        "undertone": "neutral",
-                        "hex": "#794e2b"
-                    },
-                    {
-                        "name": "470 Medium Deep",
-                        "undertone": "golden",
-                        "hex": "#91542b"
-                    },
-                    {
-                        "name": "460 Medium Deep",
-                        "undertone": "peach",
-                        "hex": "#955a3b"
-                    },
-                    {
-                        "name": "450 Medium Deep",
-                        "undertone": "rosy",
-                        "hex": "#945c43"
-                    },
-                    {
-                        "name": "440 Medium Deep",
-                        "undertone": "golden",
-                        "hex": "#975d33"
-                    },
-                    {
-                        "name": "425 Medium Deep",
-                        "undertone": "neutral",
-                        "hex": "#895322"
-                    },
-                    {
-                        "name": "415 Medium Deep",
-                        "undertone": "neutral",
-                        "hex": "#9a5f3d"
-                    },
-                    {
-                        "name": "400 Medium Deep",
-                        "undertone": "rosy",
-                        "hex": "#99624b"
-                    },
-                    {
-                        "name": "385 Medium",
-                        "undertone": "neutral",
-                        "hex": "#996145"
-                    },
-                    {
-                        "name": "370 Medium",
-                        "undertone": "golden",
-                        "hex": "#bc7f4e"
-                    },
-                    {
-                        "name": "360 Medium",
-                        "undertone": "rosy",
-                        "hex": "#b17251"
-                    },
-                    {
-                        "name": "350 Medium",
-                        "undertone": "peach",
-                        "hex": "#a97154"
-                    },
-                    {
-                        "name": "340 Medium",
-                        "undertone": "golden",
-                        "hex": "#af784d"
-                    },
-                    {
-                        "name": "330 Medium",
-                        "undertone": "olive",
-                        "hex": "#b2805f"
-                    },
-                    {
-                        "name": "325 Medium",
-                        "undertone": "peach",
-                        "hex": "#b67c64"
-                    },
-                    {
-                        "name": "310 Medium",
-                        "undertone": "rosy",
-                        "hex": "#c68d6d"
-                    },
-                    {
-                        "name": "300 Medium",
-                        "undertone": "neutral",
-                        "hex": "#c39477"
-                    },
-                    {
-                        "name": "280 Light Medium",
-                        "undertone": "peach",
-                        "hex": "#b78972"
-                    },
-                    {
-                        "name": "270 Light Medium",
-                        "undertone": "neutral",
-                        "hex": "#ba8667"
-                    },
-                    {
-                        "name": "260 Light Medium",
-                        "undertone": "olive",
-                        "hex": "#be946f"
-                    },
-                    {
-                        "name": "250 Light Medium",
-                        "undertone": "neutral",
-                        "hex": "#d4997f"
-                    },
-                    {
-                        "name": "240 Light Medium",
-                        "undertone": "rosy",
-                        "hex": "#cca299"
-                    },
-                    {
-                        "name": "230 Light Medium",
-                        "undertone": "golden",
-                        "hex": "#cda591"
-                    },
-                    {
-                        "name": "220 Light Medium",
-                        "undertone": "rosy",
-                        "hex": "#c69a85"
-                    },
-                    {
-                        "name": "210 Light Medium",
-                        "undertone": "peach",
-                        "hex": "#dba28a"
-                    },
-                    {
-                        "name": "200 Light Medium",
-                        "undertone": "neutral",
-                        "hex": "#c39784"
-                    },
-                    {
-                        "name": "190 Light",
-                        "undertone": "olive",
-                        "hex": "#d1a588"
-                    },
-                    {
-                        "name": "175 Light",
-                        "undertone": "neutral",
-                        "hex": "#dfa784"
-                    },
-                    {
-                        "name": "160 Light",
-                        "undertone": "neutral",
-                        "hex": "#e3a78b"
-                    },
-                    {
-                        "name": "145 Light",
-                        "undertone": "golden",
-                        "hex": "#d6a57d"
-                    },
-                    {
-                        "name": "130 Light",
-                        "undertone": "rosy",
-                        "hex": "#f6c7ab"
-                    },
-                    {
-                        "name": "120 Light",
-                        "undertone": "peach",
-                        "hex": "#eab78c"
-                    },
-                    {
-                        "name": "110 Light",
-                        "undertone": "neutral",
-                        "hex": "#e7bca5"
-                    },
-                    {
-                        "name": "100 Light",
-                        "undertone": "peach",
-                        "hex": "#f1c8b6"
-                    },
-                    {
-                        "name": "070 Fair",
-                        "undertone": "neutral",
-                        "hex": "#f4c7ae"
-                    },
-                    {
-                        "name": "060 Fair",
-                        "undertone": "rosy",
-                        "hex": "#f4c8bb"
-                    },
-                    {
-                        "name": "050 Fair",
-                        "undertone": "golden",
-                        "hex": "#e5c5b6"
-                    },
-                    {
-                        "name": "040 Fair",
-                        "undertone": "neutral",
-                        "hex": "#e6c9ac"
-                    },
-                    {
-                        "name": "030 Fair",
-                        "undertone": "golden",
-                        "hex": "#f2d4b1"
-                    },
-                    {
-                        "name": "015 Fair",
-                        "undertone": "rosy",
-                        "hex": "#fdd7bc"
-                    },
-                    {
-                        "name": "000 Fair",
-                        "undertone": "neutral",
-                        "hex": "#f3eee9"
-                    }
+                    { "name": "590 Deep", "undertone": "neutral", "hex": "#361f11" },
+                    { "name": "580 Deep", "undertone": "neutral", "hex": "#441f0b" },
+                    { "name": "570 Deep", "undertone": "golden", "hex": "#491b11" },
+                    { "name": "560 Deep", "undertone": "neutral", "hex": "#54301f" },
+                    { "name": "540 Deep", "undertone": "neutral", "hex": "#602f1a" },
+                    { "name": "530 Deep", "undertone": "neutral", "hex": "#663911" },
+                    { "name": "520 Deep", "undertone": "golden", "hex": "#682e1a" },
+                    { "name": "510 Deep", "undertone": "rosy", "hex": "#6d412b" },
+                    { "name": "500 Deep", "undertone": "neutral", "hex": "#55322e" },
+                    { "name": "490 Medium Deep", "undertone": "golden", "hex": "#73451a" },
+                    { "name": "480 Medium Deep", "undertone": "neutral", "hex": "#794e2b" },
+                    { "name": "470 Medium Deep", "undertone": "golden", "hex": "#91542b" },
+                    { "name": "460 Medium Deep", "undertone": "peach", "hex": "#955a3b" },
+                    { "name": "450 Medium Deep", "undertone": "rosy", "hex": "#945c43" },
+                    { "name": "440 Medium Deep", "undertone": "golden", "hex": "#975d33" },
+                    { "name": "425 Medium Deep", "undertone": "neutral", "hex": "#895322" },
+                    { "name": "415 Medium Deep", "undertone": "neutral", "hex": "#9a5f3d" },
+                    { "name": "400 Medium Deep", "undertone": "rosy", "hex": "#99624b" },
+                    { "name": "385 Medium", "undertone": "neutral", "hex": "#996145" },
+                    { "name": "370 Medium", "undertone": "golden", "hex": "#bc7f4e" },
+                    { "name": "360 Medium", "undertone": "rosy", "hex": "#b17251" },
+                    { "name": "350 Medium", "undertone": "peach", "hex": "#a97154" },
+                    { "name": "340 Medium", "undertone": "golden", "hex": "#af784d" },
+                    { "name": "330 Medium", "undertone": "olive", "hex": "#b2805f" },
+                    { "name": "325 Medium", "undertone": "peach", "hex": "#b67c64" },
+                    { "name": "310 Medium", "undertone": "rosy", "hex": "#c68d6d" },
+                    { "name": "300 Medium", "undertone": "neutral", "hex": "#c39477" },
+                    { "name": "280 Light Medium", "undertone": "peach", "hex": "#b78972" },
+                    { "name": "270 Light Medium", "undertone": "neutral", "hex": "#ba8667" },
+                    { "name": "260 Light Medium", "undertone": "olive", "hex": "#be946f" },
+                    { "name": "250 Light Medium", "undertone": "neutral", "hex": "#d4997f" },
+                    { "name": "240 Light Medium", "undertone": "rosy", "hex": "#cca299" },
+                    { "name": "230 Light Medium", "undertone": "golden", "hex": "#cda591" },
+                    { "name": "220 Light Medium", "undertone": "rosy", "hex": "#c69a85" },
+                    { "name": "210 Light Medium", "undertone": "peach", "hex": "#dba28a" },
+                    { "name": "200 Light Medium", "undertone": "neutral", "hex": "#c39784" },
+                    { "name": "190 Light", "undertone": "olive", "hex": "#d1a588" },
+                    { "name": "175 Light", "undertone": "neutral", "hex": "#dfa784" },
+                    { "name": "160 Light", "undertone": "neutral", "hex": "#e3a78b" },
+                    { "name": "145 Light", "undertone": "golden", "hex": "#d6a57d" },
+                    { "name": "130 Light", "undertone": "rosy", "hex": "#f6c7ab" },
+                    { "name": "120 Light", "undertone": "peach", "hex": "#eab78c" },
+                    { "name": "110 Light", "undertone": "neutral", "hex": "#e7bca5" },
+                    { "name": "100 Light", "undertone": "peach", "hex": "#f1c8b6" },
+                    { "name": "070 Fair", "undertone": "neutral", "hex": "#f4c7ae" },
+                    { "name": "060 Fair", "undertone": "rosy", "hex": "#f4c8bb" },
+                    { "name": "050 Fair", "undertone": "golden", "hex": "#e5c5b6" },
+                    { "name": "040 Fair", "undertone": "neutral", "hex": "#e6c9ac" },
+                    { "name": "030 Fair", "undertone": "golden", "hex": "#f2d4b1" },
+                    { "name": "015 Fair", "undertone": "rosy", "hex": "#fdd7bc" },
+                    { "name": "000 Fair", "undertone": "neutral", "hex": "#f3eee9" }
                 ]
             }
         ]
@@ -640,314 +158,84 @@
             {
                 "name": "True Match Nude Tinted Serum Foundation",
                 "finish": " natural, radiant, luminous",
+                "spf": false,
                 "url-Official" : "https://www.lorealparisusa.com/makeup/face/true-match-nude-hyaluronic-tinted-serum-hydrates-all-in-1",
                 "url-Amazon" : "https://link.amazon/B0h6q51kr", 
                 "url-Sephora" : "https://www.sephora.com", 
                 "url-Ulta" : "https://www.ulta.com/p/true-match-nude-hyaluronic-tinted-serum-pimprod2025003?sku=2582143",
                 "shades": [
-                    {
-                        "name": "Very Light 0.5-2",
-                        "hex": "#edc9ba"
-                    },
-                    {
-                        "name": "Rosy Light 1-2.5",
-                        "undertone": "rosy",
-                        "hex": "#fabfa8"
-                    },
-                    {
-                        "name": "Light-2-3",
-                        "hex": "#d9a992"
-                    },
-                    {
-                        "name": "Light-Medium 3-4",
-                        "hex": "#d99d8d"
-                    },
-                    {
-                        "name": "Medium 4-5",
-                        "hex": "#d09d80"
-                    },
-                    {
-                        "name": "Rich Medium 4.5-5.5",
-                        "hex": "#d99e75"
-                    },
-                    {
-                        "name": "Medium Tan-5-6",
-                        "hex": "#af7940"
-                    },
-                    {
-                        "name": "Tan 6-7",
-                        "hex": "#bc7c4d"
-                    },
-                    {
-                        "name": "Tan Deep-7-8",
-                        "hex": "#975a3b"
-                    },
-                    {
-                        "name": "Cool Deep 7.5-8.5",
-                        "undertone": "cool",
-                        "hex": "#9e512a"
-                    },
-                    {
-                        "name": "Medium Deep 8.5-9.5",
-                        "hex": "#884b13"
-                    },
-                    {
-                        "name": "Deep 8-10",
-                        "hex": "#773e2a"
-                    },
-                    {
-                        "name": "Rich Deep 10.5-11",
-                        "hex": "#6e4323"
-                    },
-                    {
-                        "name": "Very Deep 10-12",
-                        "hex": "#462317"
-                    }
+                    { "name": "Very Light 0.5-2", "hex": "#edc9ba" },
+                    { "name": "Rosy Light 1-2.5", "undertone": "rosy", "hex": "#fabfa8" },
+                    { "name": "Light-2-3", "hex": "#d9a992" },
+                    { "name": "Light-Medium 3-4", "hex": "#d99d8d" },
+                    { "name": "Medium 4-5", "hex": "#d09d80" },
+                    { "name": "Rich Medium 4.5-5.5", "hex": "#d99e75" },
+                    { "name": "Medium Tan-5-6", "hex": "#af7940" },
+                    { "name": "Tan 6-7", "hex": "#bc7c4d" },
+                    { "name": "Tan Deep-7-8", "hex": "#975a3b" },
+                    { "name": "Cool Deep 7.5-8.5", "undertone": "cool", "hex": "#9e512a" },
+                    { "name": "Medium Deep 8.5-9.5", "hex": "#884b13" },
+                    { "name": "Deep 8-10", "hex": "#773e2a" },
+                    { "name": "Rich Deep 10.5-11", "hex": "#6e4323" },
+                    { "name": "Very Deep 10-12", "hex": "#462317" }
                 ]
             },
                         {
                 "name": "True Match Foundation",
                 "finish": "natural",
+                "spf": false,
                 "url-Official" : "https://www.lorealparisusa.com/makeup/face/foundation-makeup/true-match-super-blendable-makeup",
                 "url-Amazon" : "https://link.amazon/B09jUkegX", 
                 "url-Sephora" : "https://www.sephora.com", 
                 "url-Ulta" : "https://www.ulta.com/p/true-match-super-blendable-foundation-pimprod2034733?sku=2602421",
                "shades": [
-                    {
-                        "name": "N1, Light",
-                        "undertone": "neutral",
-                        "hex": "#f5d4b9"
-                    },
-                    {
-                        "name": "C12, Deep",
-                        "undertone": "cool",
-                        "hex": "#280f11"
-                    },
-                    {
-                        "name": "C11, Deep",
-                        "undertone": "cool",
-                        "hex": "#3e1915"
-                    },
-                    {
-                        "name": "C10, Deep",
-                        "undertone": "cool",
-                        "hex": "#521f0a"
-                    },
-                    {
-                        "name": "C9.5, Deep",
-                        "undertone": "cool",
-                        "hex": "#663017"
-                    },
-                    {
-                        "name": "N11, Deep",
-                        "undertone": "neutral",
-                        "hex": "#4c270e"
-                    },
-                    {
-                        "name": "N10, Deep",
-                        "undertone": "neutral",
-                        "hex": "#703912"
-                    },
-                    {
-                        "name": "N9, Medium Deep",
-                        "undertone": "neutral",
-                        "hex": "#894004"
-                    },
-                    {
-                        "name": "W9.5, Deep",
-                        "undertone": "warm",
-                        "hex": "#975627"
-                    },
-                    {
-                        "name": "C9, Deep",
-                        "undertone": "cool",
-                        "hex": "#823d16"
-                    },
-                    {
-                        "name": "N8, Medium Deep",
-                        "undertone": "neutral",
-                        "hex": "#984a0b"
-                    },
-                    {
-                        "name": "C8, Medium Deep",
-                        "undertone": "cool",
-                        "hex": "#8b4826"
-                    },
-                    {
-                        "name": "W10, Deep",
-                        "undertone": "warm",
-                        "hex": "#763b05"
-                    },
-                    {
-                        "name": "C7, Medium Deep",
-                        "undertone": "cool",
-                        "hex": "#c1714b"
-                    },
-                    {
-                        "name": "C6, Medium",
-                        "undertone": "cool",
-                        "hex": "#b66637"
-                    },
-                    {
-                        "name": "W9, Medium Deep",
-                        "undertone": "warm",
-                        "hex": "#ac6b38"
-                    },
-                    {
-                        "name": "W8, Medium Deep",
-                        "undertone": "warm",
-                        "hex": "#bd7546"
-                    },
-                    {
-                        "name": "N6.5, Medium Deep",
-                        "undertone": "neutral",
-                        "hex": "#d38045"
-                    },
-                    {
-                        "name": "N6, Medium",
-                        "undertone": "neutral",
-                        "hex": "#cf9163"
-                    },
-                    {
-                        "name": "W5.5, Medium",
-                        "undertone": "warm",
-                        "hex": "#dc9566"
-                    },
-                    {
-                        "name": "W7, Medium Deep",
-                        "undertone": "warm",
-                        "hex": "#cf8e52"
-                    },
-                    {
-                        "name": "N7, Medium Deep",
-                        "undertone": "neutral",
-                        "hex": "#c68251"
-                    },
-                    {
-                        "name": "N4, Light Medium",
-                        "undertone": "neutral",
-                        "hex": "#e3ab8a"
-                    },
-                    {
-                        "name": "W5, Medium",
-                        "undertone": "warm",
-                        "hex": "#ebb081"
-                    },
-                    {
-                        "name": "C4, Light Medium",
-                        "undertone": "cool",
-                        "hex": "#ebb094"
-                    },
-                    {
-                        "name": "W4.5, Light Medium",
-                        "undertone": "warm",
-                        "hex": "#e9a86e"
-                    },
-                    {
-                        "name": "N5.5, Medium",
-                        "undertone": "neutral",
-                        "hex": "#cf9463"
-                    },
-                    {
-                        "name": "N5, Medium",
-                        "undertone": "neutral",
-                        "hex": "#dc9f79"
-                    },
-                    {
-                        "name": "N3, Light Medium",
-                        "undertone": "neutral",
-                        "hex": "#ebbd97"
-                    },
-                    {
-                        "name": "W6, Medium",
-                        "undertone": "warm",
-                        "hex": "#db9973"
-                    },
-                    {
-                        "name": "W4, Light Medium",
-                        "undertone": "warm",
-                        "hex": "#e3b186"
-                    },
-                    {
-                        "name": "C3, Light Medium",
-                        "undertone": "cool",
-                        "hex": "#ebb6a2"
-                    },
-                    {
-                        "name": "C5, Medium",
-                        "undertone": "cool",
-                        "hex": "#dea38f"
-                    },
-                    {
-                        "name": "C2.5, Light Medium",
-                        "undertone": "cool",
-                        "hex": "#edbaa3"
-                    },
-                    {
-                        "name": "W3, Light Medium",
-                        "undertone": "warm",
-                        "hex": "#f0c0a0"
-                    },
-                    {
-                        "name": "C1.5, Light",
-                        "undertone": "cool",
-                        "hex": "#faccbd"
-                    },
-                    {
-                        "name": "C2, Light",
-                        "undertone": "cool",
-                        "hex": "#f7d4c4"
-                    },
-                    {
-                        "name": "N2, Light",
-                        "undertone": "neutral",
-                        "hex": "#f5d4bb"
-                    },
-                    {
-                        "name": "W2.5, Light Medium",
-                        "undertone": "warm",
-                        "hex": "#f0cdaa"
-                    },
-                    {
-                        "name": "C1, Light",
-                        "undertone": "cool",
-                        "hex": "#fcd4c4"
-                    },
-                    {
-                        "name": "N0.5, Light",
-                        "undertone": "neutral",
-                        "hex": "#fce3cc"
-                    },
-                    {
-                        "name": "C0.5, Light",
-                        "undertone": "cool",
-                        "hex": "#fcded1"
-                    },
-                    {
-                        "name": "W2, Light",
-                        "undertone": "warm",
-                        "hex": "#f7d4b3"
-                    },
-                    {
-                        "name": "W1, Light",
-                        "undertone": "warm",
-                        "hex": "#fadec7"
-                    },
-                    {
-                        "name": "W0.5, Light",
-                        "undertone": "warm",
-                        "hex": "#fce6d4"
-                    },
-                    {
-                        "name": "W6.5, Medium",
-                        "undertone": "warm",
-                        "hex": "#deac72"
-                    },
-                    {
-                        "name": "W10.5, Deep",
-                        "undertone": "warm",
-                        "hex": "#522b14"
-                    }
+                    { "name": "N1, Light", "undertone": "neutral", "hex": "#f5d4b9" },
+                    { "name": "C12, Deep", "undertone": "cool", "hex": "#280f11" },
+                    { "name": "C11, Deep", "undertone": "cool", "hex": "#3e1915" },
+                    { "name": "C10, Deep", "undertone": "cool", "hex": "#521f0a" },
+                    { "name": "C9.5, Deep", "undertone": "cool", "hex": "#663017" },
+                    { "name": "N11, Deep", "undertone": "neutral", "hex": "#4c270e" },
+                    { "name": "N10, Deep", "undertone": "neutral", "hex": "#703912" },
+                    { "name": "N9, Medium Deep", "undertone": "neutral", "hex": "#894004" },
+                    { "name": "W9.5, Deep", "undertone": "warm", "hex": "#975627" },
+                    { "name": "C9, Deep", "undertone": "cool", "hex": "#823d16" },
+                    { "name": "N8, Medium Deep", "undertone": "neutral", "hex": "#984a0b" },
+                    { "name": "C8, Medium Deep", "undertone": "cool", "hex": "#8b4826" },
+                    { "name": "W10, Deep", "undertone": "warm", "hex": "#763b05" },
+                    { "name": "C7, Medium Deep", "undertone": "cool", "hex": "#c1714b" },
+                    { "name": "C6, Medium", "undertone": "cool", "hex": "#b66637" },
+                    { "name": "W9, Medium Deep", "undertone": "warm", "hex": "#ac6b38" },
+                    { "name": "W8, Medium Deep", "undertone": "warm", "hex": "#bd7546" },
+                    { "name": "N6.5, Medium Deep", "undertone": "neutral", "hex": "#d38045" },
+                    { "name": "N6, Medium", "undertone": "neutral", "hex": "#cf9163" },
+                    { "name": "W5.5, Medium", "undertone": "warm", "hex": "#dc9566" },
+                    { "name": "W7, Medium Deep", "undertone": "warm", "hex": "#cf8e52" },
+                    { "name": "N7, Medium Deep", "undertone": "neutral", "hex": "#c68251" },
+                    { "name": "N4, Light Medium", "undertone": "neutral", "hex": "#e3ab8a" },
+                    { "name": "W5, Medium", "undertone": "warm", "hex": "#ebb081" },
+                    { "name": "C4, Light Medium", "undertone": "cool", "hex": "#ebb094" },
+                    { "name": "W4.5, Light Medium", "undertone": "warm", "hex": "#e9a86e" },
+                    { "name": "N5.5, Medium", "undertone": "neutral", "hex": "#cf9463" },
+                    { "name": "N5, Medium", "undertone": "neutral", "hex": "#dc9f79" },
+                    { "name": "N3, Light Medium", "undertone": "neutral", "hex": "#ebbd97" },
+                    { "name": "W6, Medium", "undertone": "warm", "hex": "#db9973" },
+                    { "name": "W4, Light Medium", "undertone": "warm", "hex": "#e3b186" },
+                    { "name": "C3, Light Medium", "undertone": "cool", "hex": "#ebb6a2" },
+                    { "name": "C5, Medium", "undertone": "cool", "hex": "#dea38f" },
+                    { "name": "C2.5, Light Medium", "undertone": "cool", "hex": "#edbaa3" },
+                    { "name": "W3, Light Medium", "undertone": "warm", "hex": "#f0c0a0" },
+                    { "name": "C1.5, Light", "undertone": "cool", "hex": "#faccbd" },
+                    { "name": "C2, Light", "undertone": "cool", "hex": "#f7d4c4" },
+                    { "name": "N2, Light", "undertone": "neutral", "hex": "#f5d4bb" },
+                    { "name": "W2.5, Light Medium", "undertone": "warm", "hex": "#f0cdaa" },
+                    { "name": "C1, Light", "undertone": "cool", "hex": "#fcd4c4" },
+                    { "name": "N0.5, Light", "undertone": "neutral", "hex": "#fce3cc" },
+                    { "name": "C0.5, Light", "undertone": "cool", "hex": "#fcded1" },
+                    { "name": "W2, Light", "undertone": "warm", "hex": "#f7d4b3" },
+                    { "name": "W1, Light", "undertone": "warm", "hex": "#fadec7" },
+                    { "name": "W0.5, Light", "undertone": "warm", "hex": "#fce6d4" },
+                    { "name": "W6.5, Medium", "undertone": "warm", "hex": "#deac72" },
+                    { "name": "W10.5, Deep", "undertone": "warm", "hex": "#522b14" }
                 ]
             }
             
@@ -959,542 +247,210 @@
             {
                 "name": "HY-GLAM",
                 "finish": " radiant",
+                "spf": false,
                 "url-Official" : "https://natashadenona.com/collections/base/products/hy-glam-foundation",
                 "url-Amazon" : "https://link.amazon/B0ccDS0PL", 
                 "url-Sephora" : "https://www.sephora.com/product/natasha-denona-hy-glam-foundation-hydrating-blurring-luminous-longwear-serum-foundation-P517849?skuId=2890325", 
                 "url-Ulta" : "https://www.ulta.com/p/hy-glam-foundation-pimprod2053981?sku=2644591",
                 "shades": [
-                    {
-                        "name": "RN1 - Fair Rosy Neutral",
-                        "undertone": "rosy neutral",
-                        "hex": "#fee3d1"
-                    },
-                    {
-                        "name": "N0.5 - Very Fair Natural",
-                        "undertone": "neutral",
-                        "hex": "#fae4d7"
-                    },
-                    {
-                        "name": "Y1 - Fair Yellow",
-                        "undertone": "yellow",
-                        "hex": "#f8e0cb"
-                    },
-                    {
-                        "name": "N1 - Fair Neutral",
-                        "undertone": "neutral",
-                        "hex": "#f3ded1"
-                    },
-                    {
-                        "name": "P1 - Fair Peach",
-                        "undertone": "peach",
-                        "hex": "#f5d0b8"
-                    },
-                    {
-                        "name": "R2 - Fair Light Rosy",
-                        "undertone": "rosy",
-                        "hex": "#fed9c3"
-                    },
-                    {
-                        "name": "Y2 - Fair Light Yellow",
-                        "undertone": "yellow",
-                        "hex": "#ffe6c1"
-                    },
-                    {
-                        "name": "YP3 - Fair Light Yellow Peach",
-                        "undertone": "yellow peach",
-                        "hex": "#ffd7b0"
-                    },
-                    {
-                        "name": "RN2.5 - Fair Light Rosy",
-                        "undertone": "rosy neutral",
-                        "hex": "#fdd1b5"
-                    },
-                    {
-                        "name": "P2 - Fair Light Peach",
-                        "undertone": "peach",
-                        "hex": "#f0bea3"
-                    },
-                    {
-                        "name": "N2 - Fair Light Neutral",
-                        "undertone": "neutral",
-                        "hex": "#e5cbbc"
-                    },
-                    {
-                        "name": "RN3 - Light Rosy Neutral",
-                        "undertone": "rosy neutral",
-                        "hex": "#ffc9aa"
-                    },
-                    {
-                        "name": "N3 - Light Neutral",
-                        "undertone": "neutral",
-                        "hex": "#e4b9a3"
-                    },
-                    {
-                        "name": "N4 - Light Neutral",
-                        "undertone": "neutral",
-                        "hex": "#dbb8a7"
-                    },
-                    {
-                        "name": "Y4 - Light Yellow",
-                        "undertone": "yellow",
-                        "hex": "#fcc696"
-                    },
-                    {
-                        "name": "YP5 - Light Yellow Peach",
-                        "undertone": "yellow peach",
-                        "hex": "#f6b886"
-                    },
-                    {
-                        "name": "P3 - Light Peach",
-                        "undertone": "peach",
-                        "hex": "#e6ae89"
-                    },
-                    {
-                        "name": "P4 - Light Medium Peach",
-                        "undertone": "peach",
-                        "hex": "#f9b283"
-                    },
-                    {
-                        "name": "N5 - Light Medium Neutral",
-                        "undertone": "neutral",
-                        "hex": "#cfa996"
-                    },
-                    {
-                        "name": "N6 - Light Medium Neutral",
-                        "undertone": "neutral",
-                        "hex": "#e0b29e"
-                    },
-                    {
-                        "name": "R4 - Light Medium Rosy",
-                        "undertone": "rosy",
-                        "hex": "#eaaa86"
-                    },
-                    {
-                        "name": "N7 - Medium Neutral",
-                        "undertone": "neutral",
-                        "hex": "#d3a68c"
-                    },
-                    {
-                        "name": "YN6 - Light Medium Yellow",
-                        "undertone": "yellow neutral",
-                        "hex": "#d5a77e"
-                    },
-                    {
-                        "name": "R5 - Medium Rosy",
-                        "undertone": "rosy",
-                        "hex": "#d49c83"
-                    },
-                    {
-                        "name": "Y7 - Medium Yellow",
-                        "undertone": "yellow",
-                        "hex": "#dda476"
-                    },
-                    {
-                        "name": "N8 - Medium Neutral",
-                        "undertone": "neutral",
-                        "hex": "#deac8a"
-                    },
-                    {
-                        "name": "YP8 - Medium Yellow Peach",
-                        "undertone": "yellow peach",
-                        "hex": "#f8b56f"
-                    },
-                    {
-                        "name": "N9 - Medium Tan Neutral",
-                        "undertone": "neutral",
-                        "hex": "#d6a37c"
-                    },
-                    {
-                        "name": "P5 - Medium Tan Peach",
-                        "undertone": "peach",
-                        "hex": "#f8b476"
-                    },
-                    {
-                        "name": "YN9 - Medium Tan Yellow Neutral",
-                        "undertone": "yellow neutral",
-                        "hex": "#e8a96a"
-                    },
-                    {
-                        "name": "NP10 - Medium Tan Neutral Peach",
-                        "undertone": "neutral peach",
-                        "hex": "#da9d72"
-                    },
-                    {
-                        "name": "NY11 - Tan Neutral Yellow",
-                        "undertone": "neutral yellow",
-                        "hex": "#d8965e"
-                    },
-                    {
-                        "name": "RP6 - Tan Rosy Peach",
-                        "undertone": "rosy peach",
-                        "hex": "#e09a70"
-                    },
-                    {
-                        "name": "P6 - Tan Peach",
-                        "undertone": "peach",
-                        "hex": "#e3945c"
-                    },
-                    {
-                        "name": "P7 - Tan Dark Peach",
-                        "undertone": "peach",
-                        "hex": "#ce7f4b"
-                    },
-                    {
-                        "name": "Y10 - Tan Dark Yellow",
-                        "undertone": "yellow",
-                        "hex": "#d29863"
-                    },
-                    {
-                        "name": "RN7 - Tan Dark Rosy Neutral",
-                        "undertone": "rosy neutral",
-                        "hex": "#c98664"
-                    },
-                    {
-                        "name": "NY12 - Dark Neutral Yellow",
-                        "undertone": "neutral yellow",
-                        "hex": "#a3683f"
-                    },
-                    {
-                        "name": "YP11 - Dark Yellow Peach",
-                        "undertone": "yellow peach",
-                        "hex": "#d38e4d"
-                    },
-                    {
-                        "name": "Y12 - Dark Yellow Peach",
-                        "undertone": "yellow",
-                        "hex": "#bb804a"
-                    },
-                    {
-                        "name": "NR13 - Dark Neutral Rosy",
-                        "undertone": "neutral rosy",
-                        "hex": "#9c6037"
-                    },
-                    {
-                        "name": "NP14 - Dark Neutral Peach",
-                        "undertone": "neutral peach",
-                        "hex": "#8c5127"
-                    },
-                    {
-                        "name": "RP8 - Dark Rosy Peach",
-                        "undertone": "rosy peach",
-                        "hex": "#b66234"
-                    },
-                    {
-                        "name": "P8 - Dark Deep Peach",
-                        "undertone": "peach",
-                        "hex": "#cc7643"
-                    },
-                    {
-                        "name": "P9 - Dark Peach",
-                        "undertone": "peach",
-                        "hex": "#b05c28"
-                    },
-                    {
-                        "name": "Y13 - Dark Deep Yellow",
-                        "undertone": "yellow",
-                        "hex": "#8b552c"
-                    },
-                    {
-                        "name": "NR15 - Deep Neutral Rosy",
-                        "undertone": "neutral rosy",
-                        "hex": "#55301e"
-                    },
-                    {
-                        "name": "P10 - Deep Peach",
-                        "undertone": "peach",
-                        "hex": "#8e4e22"
-                    },
-                    {
-                        "name": "RN9 - Deep Rosy Neutral",
-                        "undertone": "rosy neutral",
-                        "hex": "#7b432a"
-                    },
-                    {
-                        "name": "YN14 - Deep Yellow Neutral",
-                        "undertone": "yellow neutral",
-                        "hex": "#643e26"
-                    },
-                    {
-                        "name": "P11 - Deep Peach",
-                        "undertone": "peach",
-                        "hex": "#663615"
-                    },
-                    {
-                        "name": "NY16 - Deep Neutral Yellow",
-                        "undertone": "neutral yellow",
-                        "hex": "#402919"
-                    }
+                    { "name": "RN1 - Fair Rosy Neutral", "undertone": "rosy neutral", "hex": "#fee3d1" },
+                    { "name": "N0.5 - Very Fair Natural", "undertone": "neutral", "hex": "#fae4d7" },
+                    { "name": "Y1 - Fair Yellow", "undertone": "yellow", "hex": "#f8e0cb" },
+                    { "name": "N1 - Fair Neutral", "undertone": "neutral", "hex": "#f3ded1" },
+                    { "name": "P1 - Fair Peach", "undertone": "peach", "hex": "#f5d0b8" },
+                    { "name": "R2 - Fair Light Rosy", "undertone": "rosy", "hex": "#fed9c3" },
+                    { "name": "Y2 - Fair Light Yellow", "undertone": "yellow", "hex": "#ffe6c1" },
+                    { "name": "YP3 - Fair Light Yellow Peach", "undertone": "yellow peach", "hex": "#ffd7b0" },
+                    { "name": "RN2.5 - Fair Light Rosy", "undertone": "rosy neutral", "hex": "#fdd1b5" },
+                    { "name": "P2 - Fair Light Peach", "undertone": "peach", "hex": "#f0bea3" },
+                    { "name": "N2 - Fair Light Neutral", "undertone": "neutral", "hex": "#e5cbbc" },
+                    { "name": "RN3 - Light Rosy Neutral", "undertone": "rosy neutral", "hex": "#ffc9aa" },
+                    { "name": "N3 - Light Neutral", "undertone": "neutral", "hex": "#e4b9a3" },
+                    { "name": "N4 - Light Neutral", "undertone": "neutral", "hex": "#dbb8a7" },
+                    { "name": "Y4 - Light Yellow", "undertone": "yellow", "hex": "#fcc696" },
+                    { "name": "YP5 - Light Yellow Peach", "undertone": "yellow peach", "hex": "#f6b886" },
+                    { "name": "P3 - Light Peach", "undertone": "peach", "hex": "#e6ae89" },
+                    { "name": "P4 - Light Medium Peach", "undertone": "peach", "hex": "#f9b283" },
+                    { "name": "N5 - Light Medium Neutral", "undertone": "neutral", "hex": "#cfa996" },
+                    { "name": "N6 - Light Medium Neutral", "undertone": "neutral", "hex": "#e0b29e" },
+                    { "name": "R4 - Light Medium Rosy", "undertone": "rosy", "hex": "#eaaa86" },
+                    { "name": "N7 - Medium Neutral", "undertone": "neutral", "hex": "#d3a68c" },
+                    { "name": "YN6 - Light Medium Yellow", "undertone": "yellow neutral", "hex": "#d5a77e" },
+                    { "name": "R5 - Medium Rosy", "undertone": "rosy", "hex": "#d49c83" },
+                    { "name": "Y7 - Medium Yellow", "undertone": "yellow", "hex": "#dda476" },
+                    { "name": "N8 - Medium Neutral", "undertone": "neutral", "hex": "#deac8a" },
+                    { "name": "YP8 - Medium Yellow Peach", "undertone": "yellow peach", "hex": "#f8b56f" },
+                    { "name": "N9 - Medium Tan Neutral", "undertone": "neutral", "hex": "#d6a37c" },
+                    { "name": "P5 - Medium Tan Peach", "undertone": "peach", "hex": "#f8b476" },
+                    { "name": "YN9 - Medium Tan Yellow Neutral", "undertone": "yellow neutral", "hex": "#e8a96a" },
+                    { "name": "NP10 - Medium Tan Neutral Peach", "undertone": "neutral peach", "hex": "#da9d72" },
+                    { "name": "NY11 - Tan Neutral Yellow", "undertone": "neutral yellow", "hex": "#d8965e" },
+                    { "name": "RP6 - Tan Rosy Peach", "undertone": "rosy peach", "hex": "#e09a70" },
+                    { "name": "P6 - Tan Peach", "undertone": "peach", "hex": "#e3945c" },
+                    { "name": "P7 - Tan Dark Peach", "undertone": "peach", "hex": "#ce7f4b" },
+                    { "name": "Y10 - Tan Dark Yellow", "undertone": "yellow", "hex": "#d29863" },
+                    { "name": "RN7 - Tan Dark Rosy Neutral", "undertone": "rosy neutral", "hex": "#c98664" },
+                    { "name": "NY12 - Dark Neutral Yellow", "undertone": "neutral yellow", "hex": "#a3683f" },
+                    { "name": "YP11 - Dark Yellow Peach", "undertone": "yellow peach", "hex": "#d38e4d" },
+                    { "name": "Y12 - Dark Yellow Peach", "undertone": "yellow", "hex": "#bb804a" },
+                    { "name": "NR13 - Dark Neutral Rosy", "undertone": "neutral rosy", "hex": "#9c6037" },
+                    { "name": "NP14 - Dark Neutral Peach", "undertone": "neutral peach", "hex": "#8c5127" },
+                    { "name": "RP8 - Dark Rosy Peach", "undertone": "rosy peach", "hex": "#b66234" },
+                    { "name": "P8 - Dark Deep Peach", "undertone": "peach", "hex": "#cc7643" },
+                    { "name": "P9 - Dark Peach", "undertone": "peach", "hex": "#b05c28" },
+                    { "name": "Y13 - Dark Deep Yellow", "undertone": "yellow", "hex": "#8b552c" },
+                    { "name": "NR15 - Deep Neutral Rosy", "undertone": "neutral rosy", "hex": "#55301e" },
+                    { "name": "P10 - Deep Peach", "undertone": "peach", "hex": "#8e4e22" },
+                    { "name": "RN9 - Deep Rosy Neutral", "undertone": "rosy neutral", "hex": "#7b432a" },
+                    { "name": "YN14 - Deep Yellow Neutral", "undertone": "yellow neutral", "hex": "#643e26" },
+                    { "name": "P11 - Deep Peach", "undertone": "peach", "hex": "#663615" },
+                    { "name": "NY16 - Deep Neutral Yellow", "undertone": "neutral yellow", "hex": "#402919" }
                 ]
             }
             
         ]
     },
-        {
+    {
         "company": "Nars",
         "products": [
             {
                 "name": "NARS Light Reflecting Foundation",
                 "finish": "natural, radiant",
+                "spf": false,
                 "url-Official" : "https://www.narscosmetics.com/USA/light-reflecting%E2%84%A2-advanced-skincare-foundation/999NAC0000141.html?dwvar_999NAC0000141_color=4251070384&cgid=foundation",
                 "url-Amazon" : "https://link.amazon/B0epIvEaK", 
                 "url-Sephora" : "https://www.sephora.com/product/nars-light-reflecting-advance-skincare-foundation-P479338?skuId=2514644&icid2=products%20grid:p479338:product", 
                 "url-Ulta" : "https://www.ulta.com/p/light-reflecting-advanced-skincare-foundation-pimprod2030141?sku=2591117",
                 "shades": [
-                    {
-                        "name": "YangYang",
-                        "undertone": "neutral",
-                        "hex": "#FCE3D5"
-                    },
-                    {
-                        "name": "Oslo",
-                        "undertone": "cool",
-                        "hex": "#F2DECD"
-                    },
-                    {
-                        "name": "Kailash",
-                        "undertone": "warm",
-                        "hex": "#F3D5B9"
-                    },
-                    {
-                        "name": "Yulong",
-                        "undertone": "neutral",
-                        "hex": "#FCE5D4"
-                    },
-                    {
-                        "name": "Gion",
-                        "undertone": "neutral",
-                        "hex": "#FCD8BD"
-                    },
-                    {
-                        "name": "Mont Blanc",
-                        "undertone": "neutral",
-                        "hex": "#E8D1B6"
-                    },
-                    {
-                        "name": "Gobi",
-                        "undertone": "warm",
-                        "hex": "#F1DDB7"
-                    },
-                    {
-                        "name": "Lima",
-                        "undertone": "neutral",
-                        "hex": "#F5B391"
-                    },
-                    {
-                        "name": "Salzburg",
-                        "undertone": "warm",
-                        "hex": "#EACAA4"
-                    },
-                    {
-                        "name": "Bruges",
-                        "undertone": "warm",
-                        "hex": "#F4B38B"
-                    },
-                    {
-                        "name": "Deauville",
-                        "undertone": "neutral",
-                        "hex": "#EFD2A8"
-                    },
-                    {
-                        "name": "Vienna",
-                        "undertone": "cool",
-                        "hex": "#EDCEAF"
-                    },
-                    {
-                        "name": "Fiji",
-                        "undertone": "warm",
-                        "hex": "#DEBE95"
-                    },
-                    {
-                        "name": "Punjab",
-                        "undertone": "warm",
-                        "hex": "#DBB98F"
-                    },
-                    {
-                        "name": "Patagonia",
-                        "undertone": "neutral",
-                        "hex": "#DAB897"
-                    },
-                    {
-                        "name": "Vallauris",
-                        "undertone": "cool",
-                        "hex": "#D7B08B"
-                    },
-                    {
-                        "name": "Santa Fe",
-                        "undertone": "neutral",
-                        "hex": "#DDB98B"
-                    },
-                    {
-                        "name": "Lanai",
-                        "undertone": "neutral",
-                        "hex": "#E8A684"
-                    },
-                    {
-                        "name": "Sahel",
-                        "undertone": "warm",
-                        "hex": "#D7AD81"
-                    },
-                    {
-                        "name": "Stromboli",
-                        "undertone": "warm",
-                        "hex": "#D4AE7A"
-                    },
-                    {
-                        "name": "Porto",
-                        "undertone": "cool",
-                        "hex": "#E9A282"
-                    },
-                    {
-                        "name": "Vanuatu",
-                        "undertone": "neutral",
-                        "hex": "#CFA878"
-                    },
-                    {
-                        "name": "Córdoba",
-                        "undertone": "warm",
-                        "hex": "#E6A97C"
-                    },
-                    {
-                        "name": "Barcelona",
-                        "undertone": "warm",
-                        "hex": "#D3AC7A"
-                    },
-                    {
-                        "name": "Valencia",
-                        "undertone": "warm",
-                        "hex": "#CDA375"
-                    },
-                    {
-                        "name": "Aruba",
-                        "undertone": "cool",
-                        "hex": "#CBA475"
-                    },
-                    {
-                        "name": "Syracuse",
-                        "undertone": "warm",
-                        "hex": "#CAA06F"
-                    },
-                    {
-                        "name": "Phoenix",
-                        "undertone": "warm",
-                        "hex": "#E4A460"
-                    },
-                    {
-                        "name": "Tahoe",
-                        "undertone": "neutral",
-                        "hex": "#C79B66"
-                    },
-                    {
-                        "name": "Moorea",
-                        "undertone": "warm",
-                        "hex": "#C09058"
-                    },
-                    {
-                        "name": "Cádiz",
-                        "undertone": "cool",
-                        "hex": "#BE8E5C"
-                    },
-                    {
-                        "name": "Seville",
-                        "undertone": "warm",
-                        "hex": "#CE885A"
-                    },
-                    {
-                        "name": "Caracas",
-                        "undertone": "warm",
-                        "hex": "#BB895A"
-                    },
-                    {
-                        "name": "Lagos",
-                        "undertone": "neutral",
-                        "hex": "#CA844E"
-                    },
-                    {
-                        "name": "Belem",
-                        "undertone": "warm",
-                        "hex": "#AD7B50"
-                    },
-                    {
-                        "name": "Macao",
-                        "undertone": "warm",
-                        "hex": "#AF7A46"
-                    },
-                    {
-                        "name": "Marquises",
-                        "undertone": "warm",
-                        "hex": "#A36F3E"
-                    },
-                    {
-                        "name": "Perth",
-                        "undertone": "neutral",
-                        "hex": "#BE783E"
-                    },
-                    {
-                        "name": "Alexandria",
-                        "undertone": "neutral",
-                        "hex": "#A9643B"
-                    },
-                    {
-                        "name": "Manaus",
-                        "undertone": "cool",
-                        "hex": "#875935"
-                    },
-                    {
-                        "name": "New Caledonia",
-                        "undertone": "warm",
-                        "hex": "#946842"
-                    },
-                    {
-                        "name": "La Serena",
-                        "undertone": "cool",
-                        "hex": "#C26C4B"
-                    },
-                    {
-                        "name": "Iguaçu",
-                        "undertone": "neutral",
-                        "hex": "#7F5537"
-                    },
-                    {
-                        "name": "Namibia",
-                        "undertone": "warm",
-                        "hex": "#7C5134"
-                    },
-                    {
-                        "name": "Timaru",
-                        "undertone": "neutral",
-                        "hex": "#AB5B40"
-                    },
-                    {
-                        "name": "Zambie",
-                        "undertone": "warm",
-                        "hex": "#69452F"
-                    },
-                    {
-                        "name": "Mali",
-                        "undertone": "neutral",
-                        "hex": "#593A23"
-                    },
-                    {
-                        "name": "Anguilla",
-                        "undertone": "neutral",
-                        "hex": "#5B3B28"
-                    },
-                    {
-                        "name": "Port Louis",
-                        "undertone": "neutral",
-                        "hex": "#82412B"
-                    },
-                    {
-                        "name": "Ambato",
-                        "undertone": "neutral",
-                        "hex": "#662F1B"
-                    },
-                    {
-                        "name": "Majorca",
-                        "undertone": "cool",
-                        "hex": "#412B1F"
-                    }
+                    { "name": "YangYang", "undertone": "neutral", "hex": "#FCE3D5" },
+                    { "name": "Oslo", "undertone": "cool", "hex": "#F2DECD" },
+                    { "name": "Kailash", "undertone": "warm", "hex": "#F3D5B9" },
+                    { "name": "Yulong", "undertone": "neutral", "hex": "#FCE5D4" },
+                    { "name": "Gion", "undertone": "neutral", "hex": "#FCD8BD" },
+                    { "name": "Mont Blanc", "undertone": "neutral", "hex": "#E8D1B6" },
+                    { "name": "Gobi", "undertone": "warm", "hex": "#F1DDB7" },
+                    { "name": "Lima", "undertone": "neutral", "hex": "#F5B391" },
+                    { "name": "Salzburg", "undertone": "warm", "hex": "#EACAA4" },
+                    { "name": "Bruges", "undertone": "warm", "hex": "#F4B38B" },
+                    { "name": "Deauville", "undertone": "neutral", "hex": "#EFD2A8" },
+                    { "name": "Vienna", "undertone": "cool", "hex": "#EDCEAF" },
+                    { "name": "Fiji", "undertone": "warm", "hex": "#DEBE95" },
+                    { "name": "Punjab", "undertone": "warm", "hex": "#DBB98F" },
+                    { "name": "Patagonia", "undertone": "neutral", "hex": "#DAB897" },
+                    { "name": "Vallauris", "undertone": "cool", "hex": "#D7B08B" },
+                    { "name": "Santa Fe", "undertone": "neutral", "hex": "#DDB98B" },
+                    { "name": "Lanai", "undertone": "neutral", "hex": "#E8A684" },
+                    { "name": "Sahel", "undertone": "warm", "hex": "#D7AD81" },
+                    { "name": "Stromboli", "undertone": "warm", "hex": "#D4AE7A" },
+                    { "name": "Porto", "undertone": "cool", "hex": "#E9A282" },
+                    { "name": "Vanuatu", "undertone": "neutral", "hex": "#CFA878" },
+                    { "name": "Córdoba", "undertone": "warm", "hex": "#E6A97C" },
+                    { "name": "Barcelona", "undertone": "warm", "hex": "#D3AC7A" },
+                    { "name": "Valencia", "undertone": "warm", "hex": "#CDA375" },
+                    { "name": "Aruba", "undertone": "cool", "hex": "#CBA475" },
+                    { "name": "Syracuse", "undertone": "warm", "hex": "#CAA06F" },
+                    { "name": "Phoenix", "undertone": "warm", "hex": "#E4A460" },
+                    { "name": "Tahoe", "undertone": "neutral", "hex": "#C79B66" },
+                    { "name": "Moorea", "undertone": "warm", "hex": "#C09058" },
+                    { "name": "Cádiz", "undertone": "cool", "hex": "#BE8E5C" },
+                    { "name": "Seville", "undertone": "warm", "hex": "#CE885A" },
+                    { "name": "Caracas", "undertone": "warm", "hex": "#BB895A" },
+                    { "name": "Lagos", "undertone": "neutral", "hex": "#CA844E" },
+                    { "name": "Belem", "undertone": "warm", "hex": "#AD7B50" },
+                    { "name": "Macao", "undertone": "warm", "hex": "#AF7A46" },
+                    { "name": "Marquises", "undertone": "warm", "hex": "#A36F3E" },
+                    { "name": "Perth", "undertone": "neutral", "hex": "#BE783E" },
+                    { "name": "Alexandria", "undertone": "neutral", "hex": "#A9643B" },
+                    { "name": "Manaus", "undertone": "cool", "hex": "#875935" },
+                    { "name": "New Caledonia", "undertone": "warm", "hex": "#946842" },
+                    { "name": "La Serena", "undertone": "cool", "hex": "#C26C4B" },
+                    { "name": "Iguaçu", "undertone": "neutral", "hex": "#7F5537" },
+                    { "name": "Namibia", "undertone": "warm", "hex": "#7C5134" },
+                    { "name": "Timaru", "undertone": "neutral", "hex": "#AB5B40" },
+                    { "name": "Zambie", "undertone": "warm", "hex": "#69452F" },
+                    { "name": "Mali", "undertone": "neutral", "hex": "#593A23" },
+                    { "name": "Anguilla", "undertone": "neutral", "hex": "#5B3B28" },
+                    { "name": "Port Louis", "undertone": "neutral", "hex": "#82412B" },
+                    { "name": "Ambato", "undertone": "neutral", "hex": "#662F1B" },
+                    { "name": "Majorca", "undertone": "cool", "hex": "#412B1F" }
+                ]
+            }
+            
+        ]
+    },
+    {
+        "company": "Clinique",
+        "products": [
+            {
+                "name": "Even Better Clinical™ Serum Foundation Broad Spectrum SPF 25",
+                "finish": " matte",
+                "spf": true,
+                "url-Official" : "https://www.clinique.com/products/even-better-clinical-serum-foundation-broad-spectrum-spf-25",
+                "url-Amazon" : "https://link.amazon/B00xsAvlS", 
+                "url-Sephora" : "https://www.sephora.com/product/clinique-even-better-clinical-serum-foundation-broad-spectrum-spf-25-P468639", 
+                "url-Ulta" : "https://www.ulta.com/p/even-better-clinical-serum-foundation-broad-spectrum-spf-25-pimprod2021174?sku=2574346",
+                "shades": [
+                    { "name": "WN 01 Flax", "undertone": "warm", "hex": "#ECDCCF" },
+                    { "name": "CN 02 Breeze", "undertone": "cool", "hex": "#EFCFBC" },
+                    { "name": "WN 04 Bone", "undertone": "warm", "hex": "#F1CFB2" },
+                    { "name": "CN 08 Linen", "undertone": "cool", "hex": "#F3D6BF" },
+                    { "name": "CN 10 Alabaster", "undertone": "cool", "hex": "#F0C9AF" },
+                    { "name": "WN 12 Meringue", "undertone": "warm", "hex": "#E5B88D" },
+                    { "name": "WN 16 Buff", "undertone": "warm", "hex": "#EBBF9D" },
+                    { "name": "CN 18 Cream Whip", "undertone": "cool", "hex": "#E9BB96" },
+                    { "name": "CN 20 Fair", "undertone": "cool", "hex": "#F2BF9D" },
+                    { "name": "CN 28 Ivory", "undertone": "cool", "hex": "#E8BC9E" },
+                    { "name": "WN 30 Biscuit", "undertone": "warm", "hex": "#E1AA87" },
+                    { "name": "WN 38 Stone", "undertone": "warm", "hex": "#DCB08B" },
+                    { "name": "CN 40 Cream Chamois", "undertone": "cool", "hex": "#DEB193" },
+                    { "name": "WN 46 Golden Neutral", "undertone": "warm", "hex": "#E2B186" },
+                    { "name": "WN 48 Oat", "undertone": "warm", "hex": "#DDA377" },
+                    { "name": "CN 52 Neutral", "undertone": "cool", "hex": "#DCAB86" },
+                    { "name": "WN 54 Honey Wheat", "undertone": "warm", "hex": "#DCA672" },
+                    { "name": "WN 56 Cashew", "undertone": "warm", "hex": "#E5B78C" },
+                    { "name": "CN 58 Honey", "undertone": "cool", "hex": "#DEAA79" },
+                    { "name": "CN 62 Porcelain Beige", "undertone": "cool", "hex": "#D9A681" },
+                    { "name": "WN 64 Butterscotch", "undertone": "warm", "hex": "#E0AD84" },
+                    { "name": "CN 70 Vanilla", "undertone": "cool", "hex": "#D8A884" },
+                    { "name": "CN 74 Beige", "undertone": "cool", "hex": "#D09B73" },
+                    { "name": "WN 76 Toasted Wheat", "undertone": "warm", "hex": "#C99566" },
+                    { "name": "CN 78 Nutty", "undertone": "cool", "hex": "#CE9465" },
+                    { "name": "WN 80 Tawnied Beige", "undertone": "warm", "hex": "#D49C70" },
+                    { "name": "CN 90 Sand", "undertone": "cool", "hex": "#CA9C72" },
+                    { "name": "WN 94 Deep Neutral", "undertone": "warm", "hex": "#D28E55" },
+                    { "name": "WN 98 Cream Caramel", "undertone": "warm", "hex": "#C8874E" },
+                    { "name": "WN 100 Deep Honey", "undertone": "warm", "hex": "#BC8054" },
+                    { "name": "WN 104 Toffee", "undertone": "warm", "hex": "#C58342" },
+                    { "name": "WN 112 Ginger", "undertone": "warm", "hex": "#BE793E" },
+                    { "name": "WN 114 Golden", "undertone": "warm", "hex": "#B47640" },
+                    { "name": "WN 115.5 Mocha", "undertone": "warm", "hex": "#B67F54" },
+                    { "name": "CN 116 Spice", "undertone": "cool", "hex": "#B97E4F" },
+                    { "name": "WN 118 Amber", "undertone": "warm", "hex": "#AB6C35" },
+                    { "name": "WN 120 Pecan", "undertone": "warm", "hex": "#B3774E" },
+                    { "name": "WN 122 Clove", "undertone": "warm", "hex": "#9B5E3B" },
+                    { "name": "WN 124 Sienna", "undertone": "warm", "hex": "#94603E" },
+                    { "name": "WN 125 Mahogany", "undertone": "warm", "hex": "#7F533C" },
+                    { "name": "CN 126 Espresso", "undertone": "cool", "hex": "#694534" },
+                    { "name": "CN 127 Truffle", "undertone": "cool", "hex": "#6D4735" }
+                ]
+            }
+            
+        ]
+    },
+    {
+        "company": "Maybelline",
+        "products": [
+            {
+                "name": "Fit Me™ Matte + Poreless Foundation",
+                "finish": " matte",
+                "spf": true,
+                "url-Official" : "https://www.maybelline.com/face-makeup/foundation/fit-me-matte-poreless-foundation",
+                "url-Amazon" : "https://link.amazon/B08Eh7Eae",  
+                "url-Sephora" : "N/A", 
+                "url-Ulta" : "https://www.ulta.com/p/fit-me-matte-poreless-liquid-foundation-xlsImpprod11861007?sku=2282913",
+                "shades": [
+                    { "name": "WN 01 Flax", "undertone": "warm neutral", "hex": "#ECDCCF" }
+                    
                 ]
             }
             

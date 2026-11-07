@@ -13,7 +13,7 @@ def test_collect_extracts_hex_and_stores_swatches(services):
     shades = {s.name: s for s in services.repository.list_shades(str(products[0].id))}
     assert shades["1N1 Ivory Nude"].hex == "#F1D2B5"
     assert shades["1N1 Ivory Nude"].status == "extracted"
-    assert ("swatches", "amazon/B0GQVP8RLD/S1.png") in services.blob_store.objects
+    assert ("swatches", "ulta/B0GQVP8RLD/S1.png") in services.blob_store.objects
 
 
 def test_collect_records_failed_swatch_without_failing_the_search(services):
@@ -28,8 +28,8 @@ def test_collect_records_failed_swatch_without_failing_the_search(services):
 
 
 def test_collect_passes_query_limit_and_retailers_to_search(services):
-    services.collector().collect("skin foundation", 5, ["amazon", "ulta"])
-    assert services.product_search.calls == [("skin foundation", 5, ("amazon", "ulta"))]
+    services.collector().collect("skin foundation", 5, ["ulta", "sephora"])
+    assert services.product_search.calls == [("skin foundation", 5, ("ulta", "sephora"))]
 
 
 def test_collect_returns_retailer_warnings(services):

@@ -1,6 +1,7 @@
 # Environment and secrets
 .env
 local.settings.json
+secrets/
 
 # Data volumes
 data/
@@ -26,3 +27,6 @@ htmlcov/
 __azurite_db_*.json
 __blobstorage__/
 __queuestorage__/
+
+# Azure onboarding session artifacts
+.copilot-azure/

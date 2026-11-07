@@ -10,4 +10,4 @@ bp = func.Blueprint()
 @bp.route(route="products", methods=["GET"], auth_level=func.AuthLevel.ANONYMOUS)
 @api_handler
 def list_products(req: func.HttpRequest) -> func.HttpResponse:
-    return json_response(ProductList(items=get_services().repository.list_products()))
+    return json_response(ProductList(items=get_services().catalog_products()))

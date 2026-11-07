@@ -51,8 +51,8 @@ export function ProductsPage() {
       {!loading && !error && products.length === 0 ? (
         <EmptyState
           icon={<BoxMultipleRegular />}
-          title="No foundations collected yet"
-          body="Search Amazon to build your first product list."
+          title="No foundations in the catalog yet"
+          body="Products come from the catalog file. Search it to find a foundation."
           action={
             <Button appearance="primary" icon={<SearchRegular />} onClick={() => navigate('/')}>
               Run first search

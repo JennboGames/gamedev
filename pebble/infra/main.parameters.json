@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": { "value": "pebble-dev-462f" },
+    "location": { "value": "westus2" },
+    "sessionId": { "value": "462fbb94-f96a-4c9d-a653-9f74ab1695bc" },
+    "deployedBy": { "value": "Jennifer Dotson" },
+    "createdAt": { "value": "2026-11-06T17:30:49.8018171-08:00" },
+    "resourceGroupName": { "value": "rg-pebble-dev" },
+    "entraAdminObjectId": { "value": "4150e87a-bcb4-4d28-aa10-de45a047adb9" },
+    "entraAdminName": { "value": "plowbiz_hotmail.com#EXT#@plowbizhotmail230.onmicrosoft.com" },
+    "entraAdminType": { "value": "User" },
+    "postgresVersion": { "value": "16" },
+    "appDbName": { "value": "foundationdb" },
+    "deploymentContainerName": { "value": "app-package" }
+  }
+}

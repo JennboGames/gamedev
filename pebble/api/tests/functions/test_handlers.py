@@ -37,38 +37,60 @@ def json_of(response: func.HttpResponse) -> dict:
 
 
 def collect(services) -> dict:
-    response = call(
-        create_search, "create_search", method="POST", body={"query": "skin foundation"}
+    """Stores a retailer fixture product directly; the search endpoint never contacts retailers."""
+    search_id, products, warnings = services.collector().collect("skin foundation", 5)
+    return {
+        "searchId": search_id,
+        "products": [p.to_json() for p in products],
+        "warnings": warnings,
+    }
+
+
+def use_catalog(services, tmp_path) -> None:
+    path = tmp_path / "products.json"
+    path.write_text(
+        json.dumps(
+            [
+                {
+                    "company": "MAC",
+                    "products": [{"name": "Studio Fix", "shades": [{"name": "NC15", "hex": "#E0B79A"}]}],
+                },
+                {
+                    "company": "NARS",
+                    "products": [{"name": "Light Reflecting", "shades": [{"name": "Oslo", "hex": "#F2DECD"}]}],
+                },
+            ]
+        ),
+        encoding="utf-8",
     )
+    services.catalog_path = path
+
+
+def test_create_search_returns_only_catalog_products(services, tmp_path):
+    use_catalog(services, tmp_path)
+    collect(services)  # a retailer product already stored must never be returned
+    calls_before = len(services.product_search.calls)
+
+    response = call(create_search, "create_search", method="POST", body={"query": "mac studio"})
+
     assert response.status_code == 201
-    return json_of(response)
-
-
-def test_create_search_returns_201_with_products(services):
-    body = collect(services)
-
-    assert body["searchId"]
-    product = body["products"][0]
-    assert product["title"].startswith("Double Wear")
-    assert product["shadeCount"] == 3
-    assert product["status"] == "partial"
-    assert product["retailer"] == "amazon"
+    body = json_of(response)
+    assert [(p["retailer"], p["brand"], p["title"]) for p in body["products"]] == [
+        ("catalog", "MAC", "Studio Fix")
+    ]
     assert body["warnings"] == []
-    assert services.product_search.calls[-1][2] == ("amazon",)
+    assert len(services.product_search.calls) == calls_before
 
 
-def test_create_search_passes_selected_retailers_and_returns_warnings(services):
-    services.product_search.warnings = ["Sephora: blocked"]
-    response = call(
-        create_search,
-        "create_search",
-        method="POST",
-        body={"query": "foundation", "retailers": ["amazon", "sephora"]},
-    )
+def test_create_search_without_a_match_returns_a_warning(services, tmp_path):
+    use_catalog(services, tmp_path)
+
+    response = call(create_search, "create_search", method="POST", body={"query": "zzz"})
 
     assert response.status_code == 201
-    assert json_of(response)["warnings"] == ["Sephora: blocked"]
-    assert services.product_search.calls[-1][2] == ("amazon", "sephora")
+    body = json_of(response)
+    assert body["products"] == []
+    assert body["warnings"] == ['No catalog products match "zzz".']
 
 
 @pytest.mark.parametrize(
@@ -79,8 +101,6 @@ def test_create_search_passes_selected_retailers_and_returns_warnings(services):
         {"query": "x"},
         {"query": "foundation", "maxProducts": 0},
         {"query": "foundation", "maxProducts": 51},
-        {"query": "foundation", "retailers": []},
-        {"query": "foundation", "retailers": ["walmart"]},
     ],
 )
 def test_create_search_validates_input(services, payload):
@@ -101,11 +121,17 @@ def test_create_search_rejects_invalid_json(services):
     assert json_of(response)["error"]["code"] == "BAD_REQUEST"
 
 
-def test_list_products_and_get_product(services):
-    product = collect(services)["products"][0]
+def test_list_products_returns_only_catalog_products_and_get_product_still_works(
+    services, tmp_path
+):
+    use_catalog(services, tmp_path)
+    product = collect(services)["products"][0]  # a retailer product that must not be listed
 
     listed = json_of(call(list_products, "list_products"))
-    assert [p["id"] for p in listed["items"]] == [product["id"]]
+    assert {(p["retailer"], p["title"]) for p in listed["items"]} == {
+        ("catalog", "Studio Fix"),
+        ("catalog", "Light Reflecting"),
+    }
 
     fetched = call(get_product, "get_product", route_params={"id": product["id"]})
     assert fetched.status_code == 200
@@ -204,12 +230,12 @@ def test_health_healthy(services):
     assert response.status_code == 200
     assert json_of(response) == {
         "status": "healthy",
-        "services": {"database": True, "storage": True, "amazon": True},
+        "services": {"database": True, "storage": True},
     }
 
 
 def test_health_degraded_still_returns_200(services):
-    services.product_search.configured = False
+    services.blob_store.healthy = False
     response = call(health, "health")
     assert response.status_code == 200
     assert json_of(response)["status"] == "degraded"
@@ -240,7 +266,6 @@ def test_import_catalog_returns_201_with_catalog_products(services, tmp_path):
 def test_health_unhealthy_returns_503(services):
     services.repository.healthy = False
     services.blob_store.healthy = False
-    services.product_search.configured = False
     response = call(health, "health")
     assert response.status_code == 503
     assert json_of(response)["status"] == "unhealthy"

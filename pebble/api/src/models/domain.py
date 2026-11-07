@@ -5,7 +5,7 @@ from typing import Literal
 
 
 @dataclass(frozen=True)
-class AmazonShade:
+class SourceShade:
     asin: str
     name: str
     swatch_url: str | None
@@ -13,21 +13,21 @@ class AmazonShade:
 
 
 @dataclass(frozen=True)
-class AmazonProduct:
-    """A retailer product; `asin` is the retailer's own product id (the name is historical)."""
+class SourceProduct:
+    """A product from the catalog or a retailer; `asin` is its id within that source (the name is historical)."""
 
     asin: str
     title: str
     brand: str | None
     detail_page_url: str | None
     image_url: str | None
-    shades: tuple[AmazonShade, ...] = ()
-    retailer: str = "amazon"
+    shades: tuple[SourceShade, ...] = ()
+    retailer: str = "catalog"
 
 
 @dataclass(frozen=True)
 class SearchOutcome:
-    products: list[AmazonProduct]
+    products: list[SourceProduct]
     warnings: list[str]
 
 
@@ -49,13 +49,13 @@ class ShadeExtraction:
 
 @dataclass(frozen=True)
 class CollectedShade:
-    shade: AmazonShade
+    shade: SourceShade
     extraction: ShadeExtraction
 
 
 @dataclass(frozen=True)
 class CollectedProduct:
-    product: AmazonProduct
+    product: SourceProduct
     shades: tuple[CollectedShade, ...]
 
 

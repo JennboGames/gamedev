@@ -4,12 +4,12 @@ from collections.abc import Callable, Mapping, Sequence
 
 from src.errors.error_types import AppError, ConfigurationError, UpstreamError
 from src.logger import get_logger
-from src.models.domain import AmazonProduct, SearchOutcome
+from src.models.domain import SearchOutcome, SourceProduct
 from src.services.interfaces.product_search import ProductSearch
 
 logger = get_logger("retailer_search")
 
-RETAILER_LABELS = {"amazon": "Amazon", "ulta": "Ulta", "sephora": "Sephora"}
+RETAILER_LABELS = {"ulta": "Ulta", "sephora": "Sephora"}
 
 
 class UnavailableSearch:
@@ -18,7 +18,7 @@ class UnavailableSearch:
     def __init__(self, reason: str) -> None:
         self._reason = reason
 
-    def search(self, query: str, max_products: int) -> list[AmazonProduct]:
+    def search(self, query: str, max_products: int) -> list[SourceProduct]:
         raise UpstreamError(self._reason)
 
     def health_check(self) -> bool:
@@ -26,23 +26,18 @@ class UnavailableSearch:
 
 
 class MultiRetailerSearch:
-    def __init__(
-        self,
-        providers: Mapping[str, ProductSearch],
-        pinned: Callable[[], list[AmazonProduct]] | None = None,
-    ) -> None:
+    def __init__(self, providers: Mapping[str, ProductSearch]) -> None:
         self._providers = providers
-        self._pinned = pinned
 
     def search(
-        self, query: str, max_products: int, retailers: Sequence[str] = ("amazon",)
+        self, query: str, max_products: int, retailers: Sequence[str] = ()
     ) -> SearchOutcome:
-        products: list[AmazonProduct] = []
+        products: list[SourceProduct] = []
         warnings: list[str] = []
         errors: list[AppError] = []
         seen: set[tuple[str, str]] = set()
 
-        def add(found: list[AmazonProduct]) -> None:
+        def add(found: list[SourceProduct]) -> None:
             for product in found:
                 key = (product.retailer, product.asin)
                 if key not in seen:
@@ -50,10 +45,6 @@ class MultiRetailerSearch:
                     products.append(product)
 
         selected = list(dict.fromkeys(retailers))
-
-        # Pinned products are always collected, even when Amazon is not selected.
-        if "amazon" not in selected and self._pinned is not None:
-            self._attempt("Amazon", self._pinned, add, warnings, errors)
 
         for retailer in selected:
             label = RETAILER_LABELS.get(retailer, retailer)
@@ -72,8 +63,8 @@ class MultiRetailerSearch:
     @staticmethod
     def _attempt(
         label: str,
-        fetch: Callable[[], list[AmazonProduct]],
-        add: Callable[[list[AmazonProduct]], None],
+        fetch: Callable[[], list[SourceProduct]],
+        add: Callable[[list[SourceProduct]], None],
         warnings: list[str],
         errors: list[AppError],
     ) -> None:
@@ -85,5 +76,4 @@ class MultiRetailerSearch:
             errors.append(exc)
 
     def health_check(self) -> bool:
-        amazon = self._providers.get("amazon")
-        return amazon.health_check() if amazon is not None else False
+        return bool(self._providers) and all(p.health_check() for p in self._providers.values())

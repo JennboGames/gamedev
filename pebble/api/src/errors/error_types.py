@@ -42,7 +42,7 @@ class NotFoundError(AppError):
 
 
 class UpstreamError(AppError):
-    """An external dependency (Amazon, image host) failed."""
+    """An external dependency (a retailer, image host) failed."""
 
     code: ErrorCode = "UPSTREAM_ERROR"
     status_code = 502

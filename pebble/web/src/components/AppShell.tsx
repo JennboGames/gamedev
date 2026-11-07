@@ -4,6 +4,7 @@ import {
   ColorRegular,
   GridRegular,
   SearchRegular,
+  SignOutRegular,
   WeatherMoonRegular,
   WeatherSunnyRegular,
 } from '@fluentui/react-icons';
@@ -96,6 +97,15 @@ export function AppShell() {
             icon={resolved === 'dark' ? <WeatherSunnyRegular /> : <WeatherMoonRegular />}
             onClick={toggle}
           />
+          {import.meta.env.PROD && (
+            <ToolbarButton
+              appearance="subtle"
+              icon={<SignOutRegular />}
+              onClick={() => window.location.assign('/.auth/logout?post_logout_redirect_uri=/login.html')}
+            >
+              Sign out
+            </ToolbarButton>
+          )}
         </Toolbar>
       </header>
       <nav className={styles.nav} aria-label="Primary">

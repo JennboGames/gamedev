@@ -16,7 +16,7 @@ def test_status_codes_and_codes():
         (NotFoundError("Product", "abc"), 404, "NOT_FOUND"),
         (ValidationError("Bad input"), 422, "VALIDATION_ERROR"),
         (BadRequestError("Bad"), 400, "BAD_REQUEST"),
-        (UpstreamError("Amazon down"), 502, "UPSTREAM_ERROR"),
+        (UpstreamError("Retailer down"), 502, "UPSTREAM_ERROR"),
         (RuntimeError("boom"), 500, "INTERNAL_ERROR"),
     ]
     for error, status, code in cases:

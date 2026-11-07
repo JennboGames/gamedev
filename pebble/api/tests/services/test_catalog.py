@@ -74,7 +74,7 @@ def test_color_map_can_be_limited_to_catalog_products(tmp_path, services):
     path = tmp_path / "products.json"
     path.write_text(json.dumps(CATALOG), encoding="utf-8")
     CatalogImporter(services.repository, path).import_catalog()
-    services.collector().collect("skin foundation", 5)  # adds an Amazon product
+    services.collector().collect("skin foundation", 5)  # adds a retailer product
 
     everything = services.color_maps().generate(None)
     catalog_only = ColorMapService(
@@ -90,7 +90,7 @@ def test_reimport_removes_shades_and_products_no_longer_in_the_catalog(tmp_path,
     path.write_text(json.dumps(CATALOG), encoding="utf-8")
     importer = CatalogImporter(services.repository, path)
     importer.import_catalog()
-    services.collector().collect("skin foundation", 5)  # an Amazon product that must survive
+    services.collector().collect("skin foundation", 5)  # a retailer product that must survive
 
     double_wear = CATALOG[0]["products"][0]
     trimmed = [
@@ -105,4 +105,4 @@ def test_reimport_removes_shades_and_products_no_longer_in_the_catalog(tmp_path,
     assert [(p.title, p.shade_count) for p in products] == [("Double Wear", 1)]
     titles = sorted(p.title for p in services.repository.list_products())
     assert titles == ["Double Wear", "Double Wear Stay-in-Place Foundation"]
-    assert len(services.repository.shades) == 1 + 3  # one catalog shade plus the Amazon product's
+    assert len(services.repository.shades) == 1 + 3  # one catalog shade plus the retailer product's

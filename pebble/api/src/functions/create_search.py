@@ -1,3 +1,5 @@
+import uuid
+
 import azure.functions as func
 
 from src.functions._http import api_handler, json_response, parse_body
@@ -11,9 +13,7 @@ bp = func.Blueprint()
 @api_handler
 def create_search(req: func.HttpRequest) -> func.HttpResponse:
     body = parse_body(req, SearchRequest)
-    search_id, products, warnings = (
-        get_services().collector().collect(body.query.strip(), body.max_products, body.retailers)
-    )
+    products, warnings = get_services().search_catalog(body.query.strip(), body.max_products)
     return json_response(
-        SearchResponse(search_id=search_id, products=products, warnings=warnings), 201
+        SearchResponse(search_id=uuid.uuid4(), products=products, warnings=warnings), 201
     )

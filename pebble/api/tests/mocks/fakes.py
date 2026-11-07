@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 
 from src.errors.error_types import UpstreamError
-from src.models.domain import AmazonProduct, FetchedImage, SearchOutcome
+from src.models.domain import FetchedImage, SearchOutcome, SourceProduct
 
 
 class FakeBlobStore:
@@ -22,7 +22,7 @@ class FakeBlobStore:
 class FakeProductSearch:
     def __init__(
         self,
-        products: list[AmazonProduct] | None = None,
+        products: list[SourceProduct] | None = None,
         configured: bool = True,
         warnings: list[str] | None = None,
     ) -> None:
@@ -32,7 +32,7 @@ class FakeProductSearch:
         self.calls: list[tuple[str, int, tuple[str, ...]]] = []
 
     def search(
-        self, query: str, max_products: int, retailers: Sequence[str] = ("amazon",)
+        self, query: str, max_products: int, retailers: Sequence[str] = ()
     ) -> SearchOutcome:
         self.calls.append((query, max_products, tuple(retailers)))
         return SearchOutcome(products=self.products[:max_products], warnings=list(self.warnings))

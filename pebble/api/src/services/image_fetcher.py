@@ -8,9 +8,6 @@ from src.errors.error_types import UpstreamError
 from src.models.domain import FetchedImage
 
 ALLOWED_HOST_SUFFIXES = (
-    ".media-amazon.com",
-    ".ssl-images-amazon.com",
-    ".images-amazon.com",
     ".ultainc.com",
     ".ulta.com",
 )

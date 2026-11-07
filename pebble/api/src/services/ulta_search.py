@@ -18,7 +18,7 @@ from urllib.request import Request, urlopen
 
 from src.errors.error_types import UpstreamError
 from src.logger import get_logger
-from src.models.domain import AmazonProduct, AmazonShade
+from src.models.domain import SourceProduct, SourceShade
 
 logger = get_logger("ulta_search")
 
@@ -95,7 +95,7 @@ def _json_ld_blocks(html: str) -> list[dict[str, Any]]:
     return blocks
 
 
-def parse_product_page(html: str, url: str, max_shades: int) -> AmazonProduct | None:
+def parse_product_page(html: str, url: str, max_shades: int) -> SourceProduct | None:
     blocks = _json_ld_blocks(html)
     product = next((b for b in blocks if b.get("@type") == "Product" and b.get("productID")), None)
     group = next((b for b in blocks if b.get("@type") == "ProductGroup"), None)
@@ -107,13 +107,13 @@ def parse_product_page(html: str, url: str, max_shades: int) -> AmazonProduct | 
     if isinstance(brand, dict):
         brand = brand.get("name")
 
-    shades: dict[str, AmazonShade] = {}
+    shades: dict[str, SourceShade] = {}
     for variant in (group or {}).get("hasVariant") or []:
         sku = str(variant.get("sku") or "")
         if not _SKU.fullmatch(sku) or sku in shades:
             continue
         name = (variant.get("color") or variant.get("name") or sku).strip()
-        shades[sku] = AmazonShade(asin=sku, name=name, swatch_url=_SWATCH_URL.format(sku=sku))
+        shades[sku] = SourceShade(asin=sku, name=name, swatch_url=_SWATCH_URL.format(sku=sku))
         if len(shades) >= max_shades:
             break
 
@@ -121,7 +121,7 @@ def parse_product_page(html: str, url: str, max_shades: int) -> AmazonProduct | 
     asin = str((product or {}).get("productID") or (group or {}).get("productGroupID") or "")
     if not asin:
         return None
-    return AmazonProduct(
+    return SourceProduct(
         asin=asin,
         title=info.get("name") or asin,
         brand=brand if isinstance(brand, str) else None,
@@ -165,11 +165,11 @@ class UltaSearch:
             raise UpstreamError(f"Ulta returned HTTP {status}")
         return body.decode("utf-8", errors="replace")
 
-    def search(self, query: str, max_products: int) -> list[AmazonProduct]:
+    def search(self, query: str, max_products: int) -> list[SourceProduct]:
         tiles = [
             t for t in parse_listing(self._get(LISTING_URL)) if matches_query(query, t[1], t[2])
         ]
-        products: list[AmazonProduct] = []
+        products: list[SourceProduct] = []
         for url, _brand, _title in tiles[:max_products]:
             if not url.startswith(_PRODUCT_URL_PREFIX):
                 continue

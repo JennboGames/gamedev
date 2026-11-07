@@ -3,10 +3,10 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-from src.services.amazon_paapi import AmazonPaapiClient
+from src.models.api import Product
 from src.services.blob_providers import create_blob_client_provider
 from src.services.blob_store import AzureBlobStore
-from src.services.catalog import CATALOG_RETAILER, CatalogImporter
+from src.services.catalog import CATALOG_RETAILER, CatalogImporter, matches_query
 from src.services.collector import ColorMapService, FoundationCollector
 from src.services.color_extractor import PillowColorExtractor
 from src.services.color_map import ColorMapRenderer
@@ -19,12 +19,7 @@ from src.services.interfaces.product_search import CatalogSearch
 from src.services.interfaces.shade_repository import ShadeRepository
 from src.services.postgres_providers import create_connection_provider
 from src.services.postgres_repository import PostgresShadeRepository
-from src.services.retailer_search import MultiRetailerSearch, UnavailableSearch
-from src.services.ulta_search import UltaSearch
-
-SEPHORA_UNAVAILABLE = (
-    "Sephora blocks automated access (HTTP 403), so its products cannot be collected."
-)
+from src.services.retailer_search import MultiRetailerSearch
 
 
 @dataclass
@@ -41,6 +36,24 @@ class ServiceRegistry:
 
     def catalog_importer(self) -> CatalogImporter:
         return CatalogImporter(self.repository, self.catalog_path)
+
+    def catalog_products(self) -> list[Product]:
+        """Products from catalog/products.json only; imports the file when none are stored yet."""
+        products = [p for p in self.repository.list_products() if p.retailer == CATALOG_RETAILER]
+        if products:
+            return products
+        _, imported = self.catalog_importer().import_catalog()
+        return imported
+
+    def search_catalog(self, query: str, max_products: int) -> tuple[list[Product], list[str]]:
+        matches = [p for p in self.catalog_products() if matches_query(p, query)]
+        warnings = [] if matches else [f'No catalog products match "{query}".']
+        return matches[:max_products], warnings
+
+    def prepare_color_map_source(self) -> None:
+        """When the map is limited to the catalog, make sure the catalog is stored first."""
+        if self.color_map_retailer == CATALOG_RETAILER:
+            self.catalog_products()
 
     def collector(self) -> FoundationCollector:
         return FoundationCollector(
@@ -65,23 +78,15 @@ def initialize_services() -> ServiceRegistry:
     """Pick Azurite/local PostgreSQL only for explicit Development; otherwise managed identity."""
     global _services
     config = load_config()
-    amazon = AmazonPaapiClient(config)
     _services = ServiceRegistry(
         repository=PostgresShadeRepository(create_connection_provider(config)),
         blob_store=AzureBlobStore(create_blob_client_provider(config)),
-        product_search=MultiRetailerSearch(
-            {
-                "amazon": amazon,
-                "ulta": UltaSearch(max_shades=config.max_shades_per_product),
-                "sephora": UnavailableSearch(SEPHORA_UNAVAILABLE),
-            },
-            pinned=amazon.pinned_products,
-        ),
+        # Every product comes from catalog/products.json; no retailer is contacted.
+        product_search=MultiRetailerSearch({}),
         image_fetcher=HttpImageFetcher(),
         color_extractor=PillowColorExtractor(),
         extraction_workers=config.extraction_workers,
         catalog_path=config.catalog_path,
-        # Until Amazon PA-API access exists, the map plots only the curated catalog.
         color_map_retailer=CATALOG_RETAILER,
     )
     return _services

@@ -3,7 +3,6 @@ import {
   Body1,
   Button,
   Card,
-  Checkbox,
   Field,
   Input,
   MessageBar,
@@ -19,9 +18,8 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../api';
 import { Hero } from '../components/Hero';
 import { EmptyState, ErrorBanner } from '../components/StateViews';
-import { RETAILER_LABELS, type Retailer, type SearchResult } from '../types';
+import type { SearchResult } from '../types';
 
-const SELECTABLE_RETAILERS: Retailer[] = ['amazon', 'ulta'];
 const MIN_QUERY_LENGTH = 2;
 const DEFAULT_MAX_PRODUCTS = 20;
 
@@ -34,7 +32,6 @@ const useStyles = makeStyles({
     gap: tokens.spacingHorizontalL,
     '@media (max-width: 800px)': { gridTemplateColumns: '1fr' },
   },
-  retailers: { display: 'flex', gap: tokens.spacingHorizontalL },
   actions: { display: 'flex', justifyContent: 'flex-end', gap: tokens.spacingHorizontalM },
 });
 
@@ -44,7 +41,6 @@ export function SearchPage() {
   const queryRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState('');
   const [maxProducts, setMaxProducts] = useState(String(DEFAULT_MAX_PRODUCTS));
-  const [retailers, setRetailers] = useState<Retailer[]>(SELECTABLE_RETAILERS);
   const [touched, setTouched] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -54,17 +50,12 @@ export function SearchPage() {
   const queryInvalid = trimmed.length < MIN_QUERY_LENGTH;
   const maxValue = Number(maxProducts);
   const maxInvalid = !Number.isInteger(maxValue) || maxValue < 1 || maxValue > 50;
-  const retailersInvalid = retailers.length === 0;
-
-  const toggleRetailer = (retailer: Retailer, checked: boolean) =>
-    setRetailers((current) => (checked ? [...current, retailer] : current.filter((r) => r !== retailer)));
 
   const focusQuery = () => queryRef.current?.focus();
 
   const reset = () => {
     setQuery('');
     setMaxProducts(String(DEFAULT_MAX_PRODUCTS));
-    setRetailers(SELECTABLE_RETAILERS);
     setTouched(false);
     setError(null);
   };
@@ -73,7 +64,7 @@ export function SearchPage() {
     setSubmitting(true);
     setError(null);
     try {
-      setResult(await api.searchFoundations({ query: trimmed, maxProducts: maxValue, retailers }));
+      setResult(await api.searchFoundations({ query: trimmed, maxProducts: maxValue }));
     } catch (err) {
       setError(err instanceof Error ? err : new Error(String(err)));
     } finally {
@@ -84,7 +75,7 @@ export function SearchPage() {
   const submit = (event: FormEvent) => {
     event.preventDefault();
     setTouched(true);
-    if (queryInvalid || maxInvalid || retailersInvalid) return;
+    if (queryInvalid || maxInvalid) return;
     void runSearch();
   };
 
@@ -93,8 +84,8 @@ export function SearchPage() {
       <Hero
         eyebrow="Foundation shade finder"
         title="Find your foundation shade"
-        subtitle="Search retailer foundations, pull every shade's swatch, and see where each one lands on the color map."
-        primaryAction={{ label: 'Collect foundations', icon: <SearchRegular />, onClick: focusQuery }}
+        subtitle="Search the foundation catalog and see where each shade lands on the color map and color wheel."
+        primaryAction={{ label: 'Search the catalog', icon: <SearchRegular />, onClick: focusQuery }}
         secondaryAction={{ label: 'See the shade map', onClick: () => navigate('/map') }}
       />
 
@@ -112,7 +103,7 @@ export function SearchPage() {
               <Input
                 ref={queryRef}
                 value={query}
-                placeholder="skin foundation"
+                placeholder="Estee Lauder"
                 onChange={(_event, data) => setQuery(data.value)}
                 onBlur={() => setTouched(true)}
               />
@@ -134,22 +125,6 @@ export function SearchPage() {
               <Input value="Beauty > Makeup > Foundation" readOnly />
             </Field>
           </div>
-          <Field
-            label="Retailers"
-            validationState={touched && retailersInvalid ? 'warning' : 'none'}
-            validationMessage={touched && retailersInvalid ? 'Select at least one retailer.' : undefined}
-          >
-            <div className={styles.retailers}>
-              {SELECTABLE_RETAILERS.map((retailer) => (
-                <Checkbox
-                  key={retailer}
-                  label={RETAILER_LABELS[retailer]}
-                  checked={retailers.includes(retailer)}
-                  onChange={(_event, data) => toggleRetailer(retailer, data.checked === true)}
-                />
-              ))}
-            </div>
-          </Field>
           <div className={styles.actions}>
             <Button appearance="secondary" type="button" onClick={reset} disabled={submitting}>
               Cancel
@@ -160,7 +135,7 @@ export function SearchPage() {
               disabled={submitting}
               icon={submitting ? <Spinner size="tiny" /> : <SearchRegular />}
             >
-              {submitting ? 'Collecting foundations…' : 'Collect foundations'}
+              {submitting ? 'Searching…' : 'Search the catalog'}
             </Button>
           </div>
         </form>
@@ -173,7 +148,7 @@ export function SearchPage() {
       {result && result.warnings.length > 0 ? (
         <MessageBar intent="warning" layout="multiline">
           <MessageBarBody>
-            <MessageBarTitle>The search was incomplete</MessageBarTitle>
+            <MessageBarTitle>No catalog match</MessageBarTitle>
             {result.warnings.join(' ')}
           </MessageBarBody>
         </MessageBar>
@@ -183,9 +158,9 @@ export function SearchPage() {
         <MessageBar intent="success" layout="multiline">
           <MessageBarBody>
             <MessageBarTitle>
-              Collected {result.products.length} {result.products.length === 1 ? 'foundation' : 'foundations'}
+              Found {result.products.length} {result.products.length === 1 ? 'foundation' : 'foundations'}
             </MessageBarTitle>
-            Every shade swatch was queued for hex extraction.
+            Every shade comes from the catalog file.
           </MessageBarBody>
           <MessageBarActions>
             <Button icon={<ArrowRightRegular />} iconPosition="after" onClick={() => navigate('/products')}>
@@ -198,8 +173,8 @@ export function SearchPage() {
       {!result || result.products.length === 0 ? (
         <EmptyState
           icon={<BoxMultipleRegular />}
-          title={result ? 'No foundations matched that search' : 'No foundations collected yet'}
-          body={result ? 'Try a broader search term.' : 'Search a retailer to build your first product list.'}
+          title={result ? 'No foundations matched that search' : 'No search yet'}
+          body={result ? 'Try a broader search term.' : 'Search the catalog by brand or product name.'}
           action={
             <Button appearance="primary" icon={<AddRegular />} onClick={focusQuery}>
               Run first search

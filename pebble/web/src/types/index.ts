@@ -2,12 +2,11 @@
 
 export type ProductStatus = 'collected' | 'extracting' | 'partial';
 export type ShadeStatus = 'extracted' | 'failed';
-export type Retailer = 'amazon' | 'ulta' | 'sephora';
-/** Where a product came from; 'catalog' is the curated catalog import. */
+export type Retailer = 'ulta' | 'sephora';
+/** Where a product came from; 'catalog' is catalog/products.json. */
 export type ProductSource = Retailer | 'catalog';
 
 export const RETAILER_LABELS: Record<ProductSource, string> = {
-  amazon: 'Amazon',
   ulta: 'Ulta',
   sephora: 'Sephora',
   catalog: 'Catalog',
@@ -16,7 +15,7 @@ export const RETAILER_LABELS: Record<ProductSource, string> = {
 export interface Product {
   id: string;
   retailer: ProductSource;
-  /** The retailer's own product id (an ASIN on Amazon). */
+  /** The product's id within its source. */
   asin: string;
   title: string;
   brand: string | null;
@@ -48,14 +47,12 @@ export interface Shade {
 export interface SearchRequest {
   query: string;
   maxProducts?: number;
-  /** Defaults to Amazon on the server. */
-  retailers?: Retailer[];
 }
 
 export interface SearchResult {
   searchId: string;
   products: Product[];
-  /** Retailers that could not be searched; the rest of the results are still returned. */
+  /** Notes about the search, such as no catalog product matching. */
   warnings: string[];
 }
 

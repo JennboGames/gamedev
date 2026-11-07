@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
-from src.models.domain import AmazonProduct, AmazonShade
+from src.models.domain import SourceProduct, SourceShade
 from src.services.color_extractor import PillowColorExtractor
 from src.services.registry import ServiceRegistry, clear_services, register_services
 from tests.mocks.fakes import FakeBlobStore, FakeImageFetcher, FakeProductSearch
@@ -27,35 +27,36 @@ def load_fixture(name: str) -> dict:
 IVORY = (241, 210, 181)
 TRUFFLE = (122, 74, 50)
 
-IVORY_URL = "https://m.media-amazon.com/images/I/ivory.png"
-TRUFFLE_URL = "https://m.media-amazon.com/images/I/truffle.png"
-BROKEN_URL = "https://m.media-amazon.com/images/I/missing.png"
+IVORY_URL = "https://images.ulta.com/is/image/ivory.png"
+TRUFFLE_URL = "https://images.ulta.com/is/image/truffle.png"
+BROKEN_URL = "https://images.ulta.com/is/image/missing.png"
 
 
 @pytest.fixture
-def amazon_products() -> list[AmazonProduct]:
+def retailer_products() -> list[SourceProduct]:
     return [
-        AmazonProduct(
+        SourceProduct(
             asin="B0GQVP8RLD",
             title="Double Wear Stay-in-Place Foundation",
             brand="Estée Lauder",
-            detail_page_url="https://www.amazon.com/dp/B0GQVP8RLD",
-            image_url="https://m.media-amazon.com/images/I/double-wear.jpg",
+            detail_page_url="https://www.ulta.com/p/double-wear",
+            image_url="https://images.ulta.com/is/image/double-wear.jpg",
+            retailer="ulta",
             shades=(
-                AmazonShade(asin="S1", name="1N1 Ivory Nude", swatch_url=IVORY_URL),
-                AmazonShade(asin="S2", name="6N2 Truffle", swatch_url=TRUFFLE_URL),
-                AmazonShade(asin="S3", name="3C2 Pebble", swatch_url=BROKEN_URL),
+                SourceShade(asin="S1", name="1N1 Ivory Nude", swatch_url=IVORY_URL),
+                SourceShade(asin="S2", name="6N2 Truffle", swatch_url=TRUFFLE_URL),
+                SourceShade(asin="S3", name="3C2 Pebble", swatch_url=BROKEN_URL),
             ),
         )
     ]
 
 
 @pytest.fixture
-def services(amazon_products: list[AmazonProduct]) -> ServiceRegistry:
+def services(retailer_products: list[SourceProduct]) -> ServiceRegistry:
     registry = ServiceRegistry(
         repository=InMemoryShadeRepository(),
         blob_store=FakeBlobStore(),
-        product_search=FakeProductSearch(amazon_products),
+        product_search=FakeProductSearch(retailer_products),
         image_fetcher=FakeImageFetcher(
             {IVORY_URL: make_png(IVORY), TRUFFLE_URL: make_png(TRUFFLE)}
         ),

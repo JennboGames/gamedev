@@ -1,12 +1,12 @@
 import pytest
 
 from src.errors.error_types import ConfigurationError, UpstreamError
-from src.models.domain import AmazonProduct
+from src.models.domain import SourceProduct
 from src.services.retailer_search import MultiRetailerSearch, UnavailableSearch
 
 
-def product(asin: str, retailer: str = "amazon") -> AmazonProduct:
-    return AmazonProduct(
+def product(asin: str, retailer: str = "ulta") -> SourceProduct:
+    return SourceProduct(
         asin=asin, title=asin, brand=None, detail_page_url=None, image_url=None, retailer=retailer
     )
 
@@ -17,7 +17,7 @@ class StubSearch:
         self.error = error
         self.calls: list[tuple[str, int]] = []
 
-    def search(self, query: str, max_products: int) -> list[AmazonProduct]:
+    def search(self, query: str, max_products: int) -> list[SourceProduct]:
         self.calls.append((query, max_products))
         if self.error:
             raise self.error
@@ -30,83 +30,76 @@ class StubSearch:
 def test_merges_results_from_selected_retailers():
     router = MultiRetailerSearch(
         {
-            "amazon": StubSearch([product("A1")]),
-            "ulta": StubSearch([product("U1", "ulta")]),
+            "ulta": StubSearch([product("U1")]),
+            "other": StubSearch([product("O1", "other")]),
         }
     )
 
-    outcome = router.search("foundation", 5, ["amazon", "ulta"])
+    outcome = router.search("foundation", 5, ["ulta", "other"])
 
-    assert [(p.retailer, p.asin) for p in outcome.products] == [("amazon", "A1"), ("ulta", "U1")]
+    assert [(p.retailer, p.asin) for p in outcome.products] == [("ulta", "U1"), ("other", "O1")]
     assert outcome.warnings == []
 
 
 def test_only_selected_retailers_are_searched():
-    amazon, ulta = StubSearch([product("A1")]), StubSearch([product("U1", "ulta")])
-    MultiRetailerSearch({"amazon": amazon, "ulta": ulta}).search("foundation", 5, ["ulta"])
+    ulta, other = StubSearch([product("U1")]), StubSearch([product("O1", "other")])
+    MultiRetailerSearch({"ulta": ulta, "other": other}).search("foundation", 5, ["other"])
 
-    assert amazon.calls == []
-    assert ulta.calls == [("foundation", 5)]
+    assert ulta.calls == []
+    assert other.calls == [("foundation", 5)]
+
+
+def test_no_selected_retailer_searches_nothing():
+    ulta = StubSearch([product("U1")])
+
+    outcome = MultiRetailerSearch({"ulta": ulta}).search("foundation", 5)
+
+    assert outcome.products == []
+    assert ulta.calls == []
 
 
 def test_failing_retailer_becomes_a_warning_when_others_succeed():
     router = MultiRetailerSearch(
         {
-            "amazon": StubSearch([product("A1")]),
+            "ulta": StubSearch([product("U1")]),
             "sephora": UnavailableSearch("Sephora blocks automated access"),
         }
     )
 
-    outcome = router.search("foundation", 5, ["amazon", "sephora"])
+    outcome = router.search("foundation", 5, ["ulta", "sephora"])
 
-    assert [p.asin for p in outcome.products] == ["A1"]
+    assert [p.asin for p in outcome.products] == ["U1"]
     assert outcome.warnings == ["Sephora: Sephora blocks automated access"]
 
 
 def test_error_is_raised_when_every_selected_retailer_fails():
-    router = MultiRetailerSearch({"amazon": StubSearch(error=ConfigurationError("no keys"))})
+    router = MultiRetailerSearch({"ulta": StubSearch(error=ConfigurationError("no keys"))})
 
     with pytest.raises(ConfigurationError):
-        router.search("foundation", 5, ["amazon"])
+        router.search("foundation", 5, ["ulta"])
 
 
 def test_unknown_retailer_is_reported_not_raised():
-    outcome = MultiRetailerSearch({"amazon": StubSearch([product("A1")])}).search(
-        "foundation", 5, ["amazon", "ulta"]
+    outcome = MultiRetailerSearch({"ulta": StubSearch([product("U1")])}).search(
+        "foundation", 5, ["ulta", "sephora"]
     )
-    assert outcome.warnings == ["Ulta search is not available."]
+    assert outcome.warnings == ["Sephora search is not available."]
 
 
-def test_pinned_products_are_added_when_amazon_is_not_selected():
+def test_provider_upstream_failure_is_a_warning():
     router = MultiRetailerSearch(
-        {"ulta": StubSearch([product("U1", "ulta")])}, pinned=lambda: [product("PIN")]
+        {
+            "ulta": StubSearch([product("U1")]),
+            "other": StubSearch(error=UpstreamError("down")),
+        }
     )
 
-    outcome = router.search("foundation", 5, ["ulta"])
-
-    assert [p.asin for p in outcome.products] == ["PIN", "U1"]
-
-
-def test_pinned_products_are_not_fetched_twice_when_amazon_is_selected():
-    calls: list[int] = []
-    router = MultiRetailerSearch(
-        {"amazon": StubSearch([product("PIN"), product("A1")])},
-        pinned=lambda: calls.append(1) or [product("PIN")],
-    )
-
-    outcome = router.search("foundation", 5, ["amazon"])
-
-    assert calls == []
-    assert [p.asin for p in outcome.products] == ["PIN", "A1"]
-
-
-def test_pinned_failure_is_a_warning():
-    def failing() -> list[AmazonProduct]:
-        raise UpstreamError("Amazon is down")
-
-    router = MultiRetailerSearch({"ulta": StubSearch([product("U1", "ulta")])}, pinned=failing)
-
-    outcome = router.search("foundation", 5, ["ulta"])
+    outcome = router.search("foundation", 5, ["ulta", "other"])
 
     assert [p.asin for p in outcome.products] == ["U1"]
-    assert outcome.warnings == ["Amazon: Amazon is down"]
+    assert outcome.warnings == ["other: down"]
+
+
+def test_health_needs_at_least_one_provider():
+    assert MultiRetailerSearch({}).health_check() is False
+    assert MultiRetailerSearch({"ulta": StubSearch()}).health_check() is True

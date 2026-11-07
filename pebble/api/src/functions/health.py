@@ -33,11 +33,10 @@ def health(req: func.HttpRequest) -> func.HttpResponse:
         checks = {
             "database": _safe(services.repository.health_check),
             "storage": _safe(services.blob_store.health_check),
-            "amazon": _safe(services.product_search.health_check),
         }
     except Exception as exc:  # noqa: BLE001
         logger.error("services_unavailable", error=repr(exc))
-        checks = {"database": False, "storage": False, "amazon": False}
+        checks = {"database": False, "storage": False}
 
     status = compute_health_status(checks)
     # degraded still serves traffic, so it stays 200; only unhealthy is 503

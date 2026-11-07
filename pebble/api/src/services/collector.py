@@ -8,11 +8,11 @@ from src.errors.error_types import NotFoundError, UpstreamError
 from src.logger import get_logger
 from src.models.api import ColorMap, Marker, Product, Shade
 from src.models.domain import (
-    AmazonShade,
     CollectedProduct,
     CollectedShade,
     ColorMapRecord,
     ShadeExtraction,
+    SourceShade,
 )
 from src.services.color_map import ColorMapRenderer
 from src.services.color_math import hex_to_hue_lightness
@@ -53,7 +53,7 @@ class FoundationCollector:
         self._workers = workers
 
     def collect(
-        self, query: str, max_products: int, retailers: Sequence[str] = ("amazon",)
+        self, query: str, max_products: int, retailers: Sequence[str] = ()
     ) -> tuple[str, list[Product], list[str]]:
         outcome = self._product_search.search(query, max_products, retailers)
         collected: list[CollectedProduct] = []
@@ -87,7 +87,7 @@ class FoundationCollector:
         extraction = self._extract(
             product.retailer,
             product.asin,
-            AmazonShade(asin=shade.asin, name=shade.name, swatch_url=shade.swatch_url),
+            SourceShade(asin=shade.asin, name=shade.name, swatch_url=shade.swatch_url),
         )
         if extraction.status == "failed":
             # Keep a previously extracted hex; only record the failure when there is nothing to keep.
@@ -100,7 +100,7 @@ class FoundationCollector:
             raise NotFoundError("Shade", shade_id)
         return updated
 
-    def _extract(self, retailer: str, product_asin: str, shade: AmazonShade) -> ShadeExtraction:
+    def _extract(self, retailer: str, product_asin: str, shade: SourceShade) -> ShadeExtraction:
         """Fetch and analyze one swatch. Per-shade problems are recorded, never raised."""
         if not shade.swatch_url:
             return ShadeExtraction(status="failed", error="This shade has no swatch image")

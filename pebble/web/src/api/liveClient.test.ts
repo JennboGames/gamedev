@@ -25,9 +25,9 @@ describe('liveClient', () => {
   });
 
   it('surfaces the server error message', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(respond(502, { error: { code: 'UPSTREAM', message: 'Amazon is down' } })));
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(respond(502, { error: { code: 'UPSTREAM', message: 'Search is down' } })));
 
-    await expect(liveClient.searchFoundations({ query: 'foundation' })).rejects.toThrow('Amazon is down');
+    await expect(liveClient.searchFoundations({ query: 'foundation' })).rejects.toThrow('Search is down');
   });
 
   it('reports an unreachable server', async () => {

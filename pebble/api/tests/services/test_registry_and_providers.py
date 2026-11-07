@@ -64,13 +64,11 @@ def test_development_requires_local_settings():
         create_connection_provider(config)
 
 
-def test_get_services_auto_initializes_without_amazon_credentials(monkeypatch):
+def test_get_services_auto_initializes_without_any_retailer(monkeypatch):
     clear_services()
     monkeypatch.setenv("AZURE_FUNCTIONS_ENVIRONMENT", "Development")
     monkeypatch.setenv("STORAGE_CONNECTION_STRING", AZURITE)
     monkeypatch.setenv("DATABASE_URL", LOCAL_DB)
-    for name in ("AMAZON_PAAPI_ACCESS_KEY", "AMAZON_PAAPI_SECRET_KEY", "AMAZON_PARTNER_TAG"):
-        monkeypatch.delenv(name, raising=False)
 
     try:
         services = get_services()
@@ -90,13 +88,14 @@ def test_registered_services_take_priority_over_auto_initialization(services):
 @pytest.mark.parametrize(
     "url",
     [
-        "http://m.media-amazon.com/images/I/a.jpg",
+        "http://images.ulta.com/is/image/a.jpg",
         "https://evil.example.com/a.jpg",
-        "https://media-amazon.com.evil.example.com/a.jpg",
+        "https://images.ulta.com.evil.example.com/a.jpg",
+        "https://m.media-amazon.com/images/I/a.jpg",
         "file:///etc/passwd",
     ],
 )
-def test_image_fetcher_rejects_non_amazon_or_non_https_urls(url):
+def test_image_fetcher_rejects_non_retailer_or_non_https_urls(url):
     from src.errors.error_types import UpstreamError
 
     with pytest.raises(UpstreamError):

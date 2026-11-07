@@ -108,12 +108,11 @@ def build_openapi_spec() -> dict:
             },
             "/searches": {
                 "post": {
-                    "summary": "Search Amazon, store products and shades, extract hex per shade",
+                    "summary": "Search the products in catalog/products.json by brand and name",
                     "requestBody": body("SearchRequest"),
                     "responses": {
-                        "201": _json("SearchResponse", "Search collected"),
+                        "201": _json("SearchResponse", "Matching catalog products"),
                         "422": _error("Validation failed"),
-                        "502": _error("Amazon or image host failed"),
                     },
                 }
             },

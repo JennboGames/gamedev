@@ -9,11 +9,11 @@ from src.errors.error_types import ConfigurationError, ValidationError
 from src.logger import get_logger
 from src.models.api import Product
 from src.models.domain import (
-    AmazonProduct,
-    AmazonShade,
     CollectedProduct,
     CollectedShade,
     ShadeExtraction,
+    SourceProduct,
+    SourceShade,
 )
 from src.services.color_math import hex_to_hue_lightness, is_valid_hex
 from src.services.interfaces.shade_repository import ShadeRepository
@@ -60,7 +60,7 @@ def parse_catalog(raw: object) -> list[CollectedProduct]:
             shade_slugs: set[str] = set()
             shades = tuple(
                 CollectedShade(
-                    AmazonShade(
+                    SourceShade(
                         asin=_unique(_slug(shade["name"]), shade_slugs),
                         name=shade["name"],
                         swatch_url=None,
@@ -72,7 +72,7 @@ def parse_catalog(raw: object) -> list[CollectedProduct]:
             )
             collected.append(
                 CollectedProduct(
-                    product=AmazonProduct(
+                    product=SourceProduct(
                         asin=_unique(_slug(f"{brand} {name}"), product_slugs),
                         title=name,
                         brand=brand,
@@ -84,6 +84,12 @@ def parse_catalog(raw: object) -> list[CollectedProduct]:
                 )
             )
     return collected
+
+
+def matches_query(product: Product, query: str) -> bool:
+    """True when every word of the query appears in the product's brand or title."""
+    haystack = f"{product.brand or ''} {product.title}".lower()
+    return all(word in haystack for word in query.lower().split())
 
 
 class CatalogImporter:
