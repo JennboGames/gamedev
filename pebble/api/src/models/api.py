@@ -1,10 +1,11 @@
 """Wire contracts (camelCase JSON). Mirrors plan route definitions."""
 
+import re
 from datetime import datetime
 from typing import Literal
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic.alias_generators import to_camel
 
 ProductStatus = Literal["collected", "extracting", "partial"]
@@ -71,6 +72,18 @@ class ColorMap(ApiModel):
     height: int
     shape: ColorMapShape = "rectangle"
     markers: list[Marker]
+
+
+class AmazonItemsRequest(ApiModel):
+    asins: list[str] = Field(min_length=1, max_length=10)
+
+    @field_validator("asins")
+    @classmethod
+    def _normalize_asins(cls, values: list[str]) -> list[str]:
+        cleaned = [v.strip().upper() for v in values]
+        if any(not re.fullmatch(r"[A-Z0-9]{10}", v) for v in cleaned):
+            raise ValueError("Each ASIN must be 10 letters or digits")
+        return list(dict.fromkeys(cleaned))
 
 
 class SearchRequest(ApiModel):

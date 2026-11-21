@@ -1,4 +1,5 @@
 import type {
+  AmazonItemsResponse,
   ColorMap,
   ColorMapRequest,
   ColorMapShape,
@@ -27,4 +28,6 @@ export interface ApiClient {
   generateColorMap(request?: ColorMapRequest): Promise<ColorMap>;
   /** GET /api/color-map; resolves null when none of that shape has been generated (404). */
   getColorMap(shape?: ColorMapShape): Promise<ColorMap | null>;
+  /** POST /api/experimental/amazon/items */
+  getAmazonItems(asins: string[]): Promise<AmazonItemsResponse>;
 }

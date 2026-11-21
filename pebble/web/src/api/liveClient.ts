@@ -69,4 +69,6 @@ export const liveClient: ApiClient = {
       throw error;
     }
   },
+
+  getAmazonItems: (asins) => request('POST', '/experimental/amazon/items', { asins }),
 };

@@ -22,6 +22,12 @@ param postgresVersion string = '16'
 param appDbName string = 'foundationdb'
 param deploymentContainerName string = 'app-package'
 
+// Existing vault holding the app's secrets (created outside this template).
+param keyVaultName string = 'kv-pebble-dev'
+// Not a secret; the Amazon Associates tracking id used on Creators API calls.
+param amazonPartnerTag string = ''
+param amazonMarketplace string = 'www.amazon.com'
+
 var tags = {
   'app-onboard-skill': 'true'
   'app-onboard-session-id': sessionId
@@ -97,6 +103,9 @@ module functionApp './modules/function-app.bicep' = {
     // Entra DB role name for the app MI (created post-deploy) equals the Function App name.
     postgresUser: functionAppName
     catalogPath: '/home/site/wwwroot/catalog/products.json'
+    keyVaultName: keyVaultName
+    amazonPartnerTag: amazonPartnerTag
+    amazonMarketplace: amazonMarketplace
   }
 }
 
@@ -106,6 +115,10 @@ module roleAssignments './modules/role-assignments.bicep' = {
   params: {
     storageAccountName: storage.outputs.storageAccountName
     functionPrincipalId: functionApp.outputs.principalId
+    swaPrincipalId: staticWebApp.outputs.principalId
+    keyVaultName: keyVaultName
+    functionSecretNames: ['amazon-creators-client-id', 'amazon-creators-client-secret']
+    swaSecretNames: ['google-client-id', 'google-client-secret']
   }
 }
 
@@ -117,6 +130,19 @@ module staticWebApp './modules/static-web-app.bicep' = {
     tags: tags
     swaName: swaName
   }
+}
+
+// After the role assignments, so the SWA identity can already read the secrets it references.
+module swaAppSettings './modules/swa-app-settings.bicep' = {
+  name: 'swa-app-settings'
+  scope: rg
+  params: {
+    swaName: staticWebApp.outputs.swaName
+    keyVaultName: keyVaultName
+  }
+  dependsOn: [
+    roleAssignments
+  ]
 }
 
 // Last in dependency order: links /api on the SWA to the Function App.

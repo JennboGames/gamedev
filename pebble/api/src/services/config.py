@@ -38,6 +38,24 @@ class AppConfig:
         return self.environment == DEVELOPMENT
 
 
+@dataclass(frozen=True)
+class AmazonCreatorsConfig:
+    client_id: str
+    client_secret: str
+    partner_tag: str
+    marketplace: str
+
+
+def load_amazon_config() -> AmazonCreatorsConfig:
+    """Read lazily: the experimental feature must not stop the rest of the API from starting."""
+    return AmazonCreatorsConfig(
+        client_id=require_setting("AMAZON_CREATORS_CLIENT_ID"),
+        client_secret=require_setting("AMAZON_CREATORS_CLIENT_SECRET"),
+        partner_tag=require_setting("AMAZON_CREATORS_PARTNER_TAG"),
+        marketplace=os.environ.get("AMAZON_CREATORS_MARKETPLACE", "").strip() or "www.amazon.com",
+    )
+
+
 def _optional(name: str) -> str | None:
     value = os.environ.get(name, "").strip()
     return value or None

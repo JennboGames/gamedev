@@ -6,6 +6,9 @@ resource staticWebApp 'Microsoft.Web/staticSites@2024-11-01' = {
   name: swaName
   location: location
   tags: tags
+  identity: {
+    type: 'SystemAssigned'
+  }
   sku: {
     name: 'Standard'
     tier: 'Standard'
@@ -16,3 +19,4 @@ resource staticWebApp 'Microsoft.Web/staticSites@2024-11-01' = {
 output swaId string = staticWebApp.id
 output swaName string = staticWebApp.name
 output defaultHostname string = staticWebApp.properties.defaultHostname
+output principalId string = staticWebApp.identity.principalId

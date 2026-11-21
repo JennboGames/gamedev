@@ -1,5 +1,6 @@
 import { Caption1, Divider, Subtitle1, Tab, TabList, Toolbar, ToolbarButton, makeStyles, tokens } from '@fluentui/react-components';
 import {
+  BeakerRegular,
   ChartMultipleRegular,
   ColorRegular,
   GridRegular,
@@ -72,6 +73,7 @@ const ROUTES = [
   { path: '/products', label: 'Products', icon: <GridRegular /> },
   { path: '/map', label: 'Shade Map', icon: <ChartMultipleRegular /> },
   { path: '/wheel', label: 'Color Wheel', icon: <ColorRegular /> },
+  { path: '/experimental', label: 'Experimental', icon: <BeakerRegular /> },
 ];
 
 export function AppShell() {

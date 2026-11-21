@@ -9,6 +9,9 @@ param postgresHost string
 param postgresDatabase string
 param postgresUser string
 param catalogPath string
+param keyVaultName string
+param amazonPartnerTag string
+param amazonMarketplace string
 param runtimeVersion string = '3.11'
 param instanceMemoryMB int = 2048
 param maximumInstanceCount int = 40
@@ -54,6 +57,11 @@ resource functionApp 'Microsoft.Web/sites@2024-11-01' = {
         { name: 'AZURE_POSTGRES_USER', value: postgresUser }
         { name: 'AZURE_STORAGE_ACCOUNT', value: storage.name }
         { name: 'CATALOG_PATH', value: catalogPath }
+        // Key Vault references resolve through the app's system-assigned identity.
+        { name: 'AMAZON_CREATORS_CLIENT_ID', value: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=amazon-creators-client-id)' }
+        { name: 'AMAZON_CREATORS_CLIENT_SECRET', value: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=amazon-creators-client-secret)' }
+        { name: 'AMAZON_CREATORS_PARTNER_TAG', value: amazonPartnerTag }
+        { name: 'AMAZON_CREATORS_MARKETPLACE', value: amazonMarketplace }
       ]
     }
     functionAppConfig: {

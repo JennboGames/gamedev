@@ -1,6 +1,7 @@
 import azure.functions as func
 
 from src.functions import (
+    amazon_items,
     create_color_map,
     create_search,
     extract_shade_hex,
@@ -20,6 +21,7 @@ initialize_services()
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
 for module in (
+    amazon_items,
     health,
     create_search,
     import_catalog,

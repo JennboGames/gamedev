@@ -96,3 +96,23 @@ export interface HealthResponse {
   status: HealthStatus;
   services: Record<string, boolean>;
 }
+
+/** Experimental: the Amazon Creators API GetItems response, passed through unchanged. */
+export interface AmazonItem {
+  asin: string;
+  detailPageURL?: string;
+  parentASIN?: string;
+  images?: { primary?: Record<string, { url: string; width: number; height: number } | null> };
+  itemInfo?: {
+    title?: { displayValue?: string };
+    byLineInfo?: { brand?: { displayValue?: string } };
+    features?: { displayValues?: string[] };
+  };
+}
+
+export interface AmazonItemsResponse {
+  // Amazon's docs and sample responses disagree on this key, so accept both.
+  itemResults?: { items?: AmazonItem[] };
+  itemsResult?: { items?: AmazonItem[] };
+  errors?: { code?: string; message?: string }[];
+}

@@ -30,6 +30,18 @@ describe('liveClient', () => {
     await expect(liveClient.searchFoundations({ query: 'foundation' })).rejects.toThrow('Search is down');
   });
 
+  it('posts ASINs to the experimental Amazon route', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(respond(200, { itemResults: { items: [] } }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await liveClient.getAmazonItems(['B09B2SBHQK']);
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      '/api/experimental/amazon/items',
+      expect.objectContaining({ method: 'POST', body: JSON.stringify({ asins: ['B09B2SBHQK'] }) }),
+    );
+  });
+
   it('reports an unreachable server', async () => {
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new TypeError('fetch failed')));
 
